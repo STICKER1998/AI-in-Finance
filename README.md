@@ -1,6 +1,6 @@
 AI in Finance
 ==============================
-## Teammates
+## Topics
 |Topics           |         Link          |
 | ---             |---                    |
 |Self - Attention |[Topic 1](./notebook/Topic1.md) |
