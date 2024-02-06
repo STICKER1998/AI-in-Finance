@@ -8,9 +8,9 @@ AI in Finance
 |Informer         |    coming soon        |
 
 
-Self - Attention
+Topic 1： Attention
 ============================
-The introduction is based on the paper ‘Attention is all you need'
+The introduction is based on the paper [‘Attention is all you need'](https://arxiv.org/abs/1706.03762)
 
 # 1. Self - Attention
 ```python
