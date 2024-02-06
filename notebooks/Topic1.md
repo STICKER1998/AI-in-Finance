@@ -3,7 +3,7 @@ Self - Attention
 The introduction is based on the paper ‘Attention is all you need'
 
 # 1. Self - Attention
-```
+```python
 class SelfAttention1H(nn.Module):
     def __init__(self, d_model, d_key, d_value):
         """
@@ -51,7 +51,7 @@ class SelfAttention1H(nn.Module):
 ```
 
 # 2. Multi-Head Attention
-```
+```python
 class SelfAttention(nn.Module):
     def __init__(self, d_model, heads_num):
         """
