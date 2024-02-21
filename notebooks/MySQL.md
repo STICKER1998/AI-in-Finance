@@ -13,7 +13,7 @@ MySQL
 ### 2. MySQL下载
 Windows: [MySQL](https://dev.mysql.com/downloads/installer/)
 在安装时需要选择Full Install， 需要耗时几分钟
-![MySQL 安装](./picture/SQLS11P1.md)
+![MySQL 安装](./picture/SQLS11P1.png)
 
 ### 3. MySQL启动与停止
 方法1： win+R -> services.msc -> 找到MySQL80 右键可以控制启动以及停止
