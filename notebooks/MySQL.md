@@ -13,18 +13,18 @@ MySQL
 ### 2. MySQL下载
 Windows: [MySQL](https://dev.mysql.com/downloads/installer/)
 在安装时需要选择Full Install， 需要耗时几分钟
-![MySQL 安装](../picture/SQLS11P1.png)
-<img src="../picture/SQLS11P1.png" alt="MySQL 安装" width="300"/>
-
+<img src="../picture/SQLS11P1.png" alt="MySQL 安装" width="600"/>
 
 ### 3. MySQL启动与停止
 方法1： win+R -> services.msc -> 找到MySQL80 右键可以控制启动以及停止
 
 方法2： cmd 以管理员身份运行 -> 输入命令行 
 `net start mysql80` / `net stop mysql80`
+<img src="../picture/SQLS11P2.png" alt="MySQL 启动与停止" width="600"/>
 
 ### 4. MySQL客户端连接
 方法1： 利用MySQL提供的客户端命令行工具 `MySQL 8.0 Command Line Client`
+<img src="../picture/SQLS11P3.png" alt="MySQL 连接" width="600"/>
 
 方法2： 利用windows命令行连接`mysql -u root -p`
 
