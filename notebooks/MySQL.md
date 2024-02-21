@@ -71,7 +71,7 @@ Windows: [MySQL](https://dev.mysql.com/downloads/installer/)
   - **使用**： `USE 数据库名`
 <img src="../pictures/SQLS12P4.png" alt="数据库使用以及查询在哪个数据库" width="600"/>
 
-
+（2）表操作-查询
 
 
 
