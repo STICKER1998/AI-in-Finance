@@ -16,4 +16,18 @@ Windows: [MySQL](https://dev.mysql.com/downloads/installer/)
 
 ### 3. MySQL启动与停止
 方法1： win+R -> services.msc -> 找到MySQL80 右键可以控制启动以及停止
-方法2： cmd 以管理员身份运行 -> 输入命令行 'net start mysql80' / 'net stop mysql80'
+
+方法2： cmd 以管理员身份运行 -> 输入命令行 
+`net start mysql80` / `net stop mysql80`
+
+### 4. MySQL客户端连接
+方法1： 利用MySQL提供的客户端命令行工具 `MySQL 8.0 Command Line Client`
+
+方法2： 利用windows命令行连接`mysql -u root -p`
+
+### 5. 数据模型
+DBMS 用来操作数据库， 而每个数据库包含多个表结构，数据就是存储在表结构中。
+
+
+
+
