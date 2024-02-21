@@ -13,18 +13,18 @@ MySQL
 ### 2. MySQL下载
 Windows: [MySQL](https://dev.mysql.com/downloads/installer/)
 在安装时需要选择Full Install， 需要耗时几分钟
-<img src="../picture/SQLS11P1.png" alt="MySQL 安装" width="600"/>
+<img src="../pictures/SQLS11P1.png" alt="MySQL 安装" width="600"/>
 
 ### 3. MySQL启动与停止
 方法1： win+R -> services.msc -> 找到MySQL80 右键可以控制启动以及停止
 
 方法2： cmd 以管理员身份运行 -> 输入命令行 
 `net start mysql80` / `net stop mysql80`
-<img src="../picture/SQLS11P2.png" alt="MySQL 启动与停止" width="600"/>
+<img src="../pictures/SQLS11P2.png" alt="MySQL 启动与停止" width="600"/>
 
 ### 4. MySQL客户端连接
 方法1： 利用MySQL提供的客户端命令行工具 `MySQL 8.0 Command Line Client`
-<img src="../picture/SQLS11P3.png" alt="MySQL 连接" width="600"/>
+<img src="../pictures/SQLS11P3.png" alt="MySQL 连接" width="600"/>
 
 方法2： 利用windows命令行连接`mysql -u root -p`
 
@@ -60,7 +60,11 @@ Windows: [MySQL](https://dev.mysql.com/downloads/installer/)
 ### 3. DDL语句
 （1） 数据库操作
   - 查询： 查询所有数据库 `SHOW DATABASES`， 查询当前数据库  `SHOW DATABASE()`
+<img src="../pictures/SQLS12P1.png" alt="数据库查询" width="600"/>
+    
   - 创建： `CREATE DATABASE [IF NOT EXISTS] 数据库名 [DEFAULT CHARSET 字符集名] [COLLATE 排序规则] `； 上面的语句中所有的方括号中的内容都是可选的， 第一个括号中的`[IF NOT EXISTS]`如果没有并且你创建的Database已经存在则会报错。
+<img src="../pictures/SQLS12P2.png" alt="数据库创建" width="600"/>
+    
   - 删除： `DROP DATABASE [IF EXISTS] 数据库名`
   - 使用： `USE 数据库名`
 
