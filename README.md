@@ -1,9 +1,9 @@
 AI in Finance
 ==============================
 ## Topics
-|Topics                     |         Link          |
-| ---                       |---                    |
-|Transformer-based Models   |[Attention](./notebooks/Topic1.md) |
-|MySQL                      |    [MySQL](./notebooks/MySQL.md)  |
-|Linux                      |    coming soon        |
+|Topics                     |         Contents      |                                              
+| ---                       |---                    |                                        
+|Transformer-based Models   |[Attention](./notebooks/Topic1.md), Transformer  |                         
+|MySQL                      |  [MySQL](./notebooks/MySQL.md)                  |                                   
+|Linux                      |    coming soon                                  |                                               
 
