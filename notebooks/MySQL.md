@@ -72,6 +72,46 @@ Windows: [MySQL](https://dev.mysql.com/downloads/installer/)
 <img src="../pictures/SQLS12P4.png" alt="数据库使用以及查询在哪个数据库" width="600"/>
 
 （2）表操作-查询
+  - **查询当前数据库所有表**：`SHOW TABLES`;
+    
+  - **查询表结构**: `DESC 表名`；
+   
+  - **查询指定表的建表语句**： `SHOW CREATE TABLE 表名`
 
+ （3）表操作-创建
+  ```
+    CREATE TABLE 表名(
+      字段1 字段类型[COMMENT 字段1注释]
+      字段2 字段类型[COMMENT 字段2注释]
+      字段3 字段类型[COMMENT 字段3注释]
+   )[COMMENT 标注释]
+  ```
+
+（4）表操作-数据类型
+   **数值类型** 
+   |类型             |大小    |有符号范围|
+   |---              |---     |---|
+   |TINYINT     |1 byte       | (-128, 127)|
+   |SMALLINT    |2 bytes      | (-32768, 32767)|
+   |MEDIUMINT   |3 bytes   | (-8388608, 8388607)|
+   |INT / INTEGER |4 bytes| (-2147483648, 2147483647)|
+   |BIGINT      |8 bytes|(-2^63, 2^63-1)|
+   |FLOAT       |4 bytes|(-3.402823466 E+38, 3.402823466351 E+38)|
+   |DOUBLE      |8 bytes| (-1.797 E308～1.797 E+308) |
+   |DECIMAL     |        |依赖于精度M和标度D的值|         
+
+**字符串类型**
+   | 分类 | 类型 | 大小 | 描述 |
+| :---: | :---: | :---: | :---: |
+| 字符串类型 | CHAR | $0-255$ bytes | 定长字符串 |
+|  | VARCHAR | $0-65535$ bytes | 变长字符串 |
+|  | TINYBLOB | $0-255$ bytes | 不超过 255 个字符的二进制数据 |
+|  | TINYTEXT | $0-255$ bytes | 短文本字符串 |
+|  | BLOB | $0-65535$ bytes | 二进制形式的长文本数据 |
+|  | TEXT | $0-65535$ bytes | 长文本数据 |
+|  | MEDIUMBLOB | 0-16 $777 \quad 215$ bytes | 二进制形式的中等长度文本数据 |
+|  | MEDIUMTEXT | 0-16 777215 bytes | 中等长度文本数据 |
+|  | LONGBLOB | $0-4294967 \quad 295$ bytes | 二进制形式的极大文本数据 |
+|  | LONGTEXT | $0-4 \quad 294 \quad 967 \quad 295$ bytes | 极大文本数据 |
 
 
