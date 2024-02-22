@@ -199,7 +199,7 @@ create table emp(
 ### 4. MySQL图形化界面工具： DataGrip
 [DataGrip](https://www.jetbrains.com/datagrip/)
 
-### 5. DML语句
+### 5. DML语句（增加，修改以及删除）
 #### （1）添加数据 `INSERT`
 **给指定字段添加数据**： `INSERT INTO 表名(字段名1， 字段名2,...) VALUES(值1，值2，...);`
 
