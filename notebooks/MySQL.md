@@ -86,6 +86,7 @@ Windows: [MySQL](https://dev.mysql.com/downloads/installer/)
       字段3 字段类型[COMMENT 字段3注释]
    )[COMMENT 标注释]
   ```
+ <img src="../pictures/SQLS12P5.png" alt="例子" width="600"/>
 
 （4）表操作-数据类型
    **数值类型** 
@@ -150,4 +151,6 @@ create table emp(
    idcard CHAR(18) comment '身份证号',
    entrydate DATE comment '入职时间'
 ) comment '员工信息表';
+```
 
+<img src="../pictures/SQLS12P6.png" alt="实际例子" width="600"/>
