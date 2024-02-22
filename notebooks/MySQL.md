@@ -196,4 +196,19 @@ create table emp(
 
 **删除指定表，并重新创建该表**：`TRUNCATED TABLE 表名`;
 
+### 4. MySQL图形化界面工具： DataGrip
+[DataGrip](https://www.jetbrains.com/datagrip/)
 
+### 5. DML语句
+#### （1）添加数据 `INSERT`
+**给指定字段添加数据**： `INSERT INTO 表名(字段名1， 字段名2,...) VALUES(值1，值2，...);`
+
+**给全部字段添加数据**: `INSERT INTO 表名 VALUES(值1，值2，...);`
+
+**批量添加数据**
+
+`INSERT INTO 表名(字段名1，字段名2,...) VALUES(值1，值2，...)(值1，值2，...)(值1，值2，...);`
+`INSERT INTO 表名 VALUES(值1，值2，...)(值1，值2，...)(值1，值2，...);`
+
+#### （2）修改数据 `UPDATE'
+#### （3）删除数据 `DELETE`
