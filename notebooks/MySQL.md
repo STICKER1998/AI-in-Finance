@@ -227,4 +227,27 @@ create table emp(
 `insert into employee values(3, '3','Itcast3','男',38,'123456789012345678','2006-01-01'),(4, '4','Itcast4','男',48,'123456789012345678','2007-01-01');`
 
 #### （2）修改数据 `UPDATE'
+
+**修改数据**：`UPDATE 表名 SET 字段名1 = 值1, 字段名2 = 值2,...[WHERE 条件];`
+
+例子1：更新id=1的数据。
+
+`update employee set name = 'itcast1' where id = 1;`
+
+`update employee set name = 'itcast1', gender = '女' where id = 1;`
+
+例子2： 更新所有人的数据。
+
+`update employee set entrydate = '2008-01-01';`
+
+
 #### （3）删除数据 `DELETE`
+**删除数据**： `DELETE FROM 表名 [WHERE 条件]`
+
+例子1： 删除女性数据。
+
+`delete from employee where gender = '女';`
+
+例子2： 删除所有数据。
+
+`delete from employee;`
