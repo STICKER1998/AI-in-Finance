@@ -154,3 +154,11 @@ create table emp(
 ```
 
 <img src="../pictures/SQLS12P6.png" alt="实际例子" width="600"/>
+
+（5）表操作-修改
+**添加字段**: `ALTER TABLE 表名 ADD 字段名 类型（长度） [COMMENT 注释] [约束]`
+
+例子： 在上面的表格`emp`中增加一个新的字段`nickname`（不超过20个字符）。
+`  alter table emp add nickname varchar(20) comment '昵称';`
+
+**修改字段**:
