@@ -251,3 +251,7 @@ create table emp(
 例子2： 删除所有数据。
 
 `delete from employee;`
+
+注意：使用`UPDATE`和`DELETE`语句时，将对所有数据进行修改和删除，这是一个非常危险的操作。
+
+### 6.DQL语句
