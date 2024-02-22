@@ -103,15 +103,18 @@ Windows: [MySQL](https://dev.mysql.com/downloads/installer/)
 **字符串类型**
    | 类型 | 大小 | 描述 |
    | :---: | :---: | :---: |
- | CHAR | $0-255$ bytes | 定长字符串 |
- | VARCHAR | 0 - 65535 bytes | 变长字符串 |
- | TINYBLOB | 0 - 255 bytes | 不超过 255 个字符的二进制数据 |
- | TINYTEXT | 0 - 255 bytes | 短文本字符串 |
-  | BLOB | 0 - 65535 bytes | 二进制形式的长文本数据 |
-  | TEXT | 0 - 65535 bytes | 长文本数据 |
-  | MEDIUMBLOB | 0-16 777 215 bytes | 二进制形式的中等长度文本数据 |
-  | MEDIUMTEXT | 0-16 777 215 bytes | 中等长度文本数据 |
-  | LONGBLOB | 0- 4 294 967 295 bytes | 二进制形式的极大文本数据 |
-  | LONGTEXT | 0- 4 294 967 295 bytes | 极大文本数据 |
+   | CHAR | $0-255$ bytes | 定长字符串 |
+   | VARCHAR | 0 - 65535 bytes | 变长字符串 |
+   | TINYBLOB | 0 - 255 bytes | 不超过 255 个字符的二进制数据 |
+   | TINYTEXT | 0 - 255 bytes | 短文本字符串 |
+   | BLOB | 0 - 65535 bytes | 二进制形式的长文本数据 |
+   | TEXT | 0 - 65535 bytes | 长文本数据 |
+   | MEDIUMBLOB | 0-16 777 215 bytes | 二进制形式的中等长度文本数据 |
+   | MEDIUMTEXT | 0-16 777 215 bytes | 中等长度文本数据 |
+   | LONGBLOB | 0- 4 294 967 295 bytes | 二进制形式的极大文本数据 |
+   | LONGTEXT | 0- 4 294 967 295 bytes | 极大文本数据 |
 
+   一般我们只是用`CHAR` 和`VARCHAR`，其余类型一般不使用，我们虽然最开始都要指定定长，但是CHAR对于多于位置会用0补充（性能好，不需要判断占用空间），但是对于VARCHAR来说它会根据输入来判断占用空间（性能相对较差）。
+   - 例子1： 如果我们想要存储用户名，规定其最长长度不得大于50位，此时使用`VARCHAR(50)`更好，因为用户输入的用户名不一样长。
+   - 例子2： 如果想要储存用户性别， 此时推荐使用`CHAR(1)`，因为性别的输入固定长度的。
 
