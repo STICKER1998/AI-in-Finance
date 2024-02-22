@@ -36,7 +36,7 @@ Windows: [MySQL](https://dev.mysql.com/downloads/installer/)
    - 特点： （1）使用表存储数据， 格式统一， 便于维护； （2） 使用SQL语言操作，标准统一，使用方便；
 
 
-## Section 1.2 SQL
+## Section 1.2 SQL基本语句
 ### 1. SQL通用语法
 （1） SQL语句可以单行或者多行书写，以分号结尾。
 
@@ -47,7 +47,8 @@ Windows: [MySQL](https://dev.mysql.com/downloads/installer/)
 （4） 注释：
    - 单行注释： `--`注释内容或者`#`注释内容（MySQL特有）
    - 多行注释： `/*注释内容*/`
-  
+   - 
+----------------
 ### 2. SQL语句的分类
 （1） DDL(Data Definition Language)： 数据定义语言，用来定义数据库对象（数据库，表，字段）；
 
@@ -57,6 +58,7 @@ Windows: [MySQL](https://dev.mysql.com/downloads/installer/)
 
 （4） DCL(Data Control Language)：数据控制语言，用来创建数据库用户，控制数据库的访问权限；
 
+----------------
 ### 3. DDL语句
 #### （1）数据库操作
   - **查询**： 查询所有数据库 `SHOW DATABASES`， 查询当前数据库  `SHOW DATABASE()`
@@ -196,9 +198,11 @@ create table emp(
 
 **删除指定表，并重新创建该表**：`TRUNCATED TABLE 表名`;
 
+----------------
 ### 4. MySQL图形化界面工具： DataGrip
 [DataGrip](https://www.jetbrains.com/datagrip/)
 
+----------------
 ### 5. DML语句（增加，修改以及删除）
 #### （1）添加数据 `INSERT`
 **给指定字段添加数据**： `INSERT INTO 表名(字段名1， 字段名2,...) VALUES(值1，值2，...);`
@@ -254,4 +258,5 @@ create table emp(
 
 注意：使用`UPDATE`和`DELETE`语句时，将对所有数据进行修改和删除，这是一个非常危险的操作。
 
+----------------
 ### 6.DQL语句
