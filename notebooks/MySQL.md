@@ -101,17 +101,17 @@ Windows: [MySQL](https://dev.mysql.com/downloads/installer/)
    |DECIMAL     |        |依赖于精度M和标度D的值|         
 
 **字符串类型**
-   | 分类 | 类型 | 大小 | 描述 |
-| :---: | :---: | :---: | :---: |
-| 字符串类型 | CHAR | $0-255$ bytes | 定长字符串 |
-|  | VARCHAR | $0-65535$ bytes | 变长字符串 |
-|  | TINYBLOB | $0-255$ bytes | 不超过 255 个字符的二进制数据 |
-|  | TINYTEXT | $0-255$ bytes | 短文本字符串 |
-|  | BLOB | $0-65535$ bytes | 二进制形式的长文本数据 |
-|  | TEXT | $0-65535$ bytes | 长文本数据 |
-|  | MEDIUMBLOB | 0-16 $777 \quad 215$ bytes | 二进制形式的中等长度文本数据 |
-|  | MEDIUMTEXT | 0-16 777215 bytes | 中等长度文本数据 |
-|  | LONGBLOB | $0-4294967 \quad 295$ bytes | 二进制形式的极大文本数据 |
-|  | LONGTEXT | $0-4 \quad 294 \quad 967 \quad 295$ bytes | 极大文本数据 |
+   | 类型 | 大小 | 描述 |
+   | :---: | :---: | :---: |
+ | CHAR | $0-255$ bytes | 定长字符串 |
+ | VARCHAR | 0 - 65535 bytes | 变长字符串 |
+ | TINYBLOB | 0 - 255 bytes | 不超过 255 个字符的二进制数据 |
+ | TINYTEXT | 0 - 255 bytes | 短文本字符串 |
+  | BLOB | 0 - 65535 bytes | 二进制形式的长文本数据 |
+  | TEXT | 0 - 65535 bytes | 长文本数据 |
+  | MEDIUMBLOB | 0-16 777 215 bytes | 二进制形式的中等长度文本数据 |
+  | MEDIUMTEXT | 0-16 777 215 bytes | 中等长度文本数据 |
+  | LONGBLOB | 0- 4 294 967 295 bytes | 二进制形式的极大文本数据 |
+  | LONGTEXT | 0- 4 294 967 295 bytes | 极大文本数据 |
 
 
