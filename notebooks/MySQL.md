@@ -162,15 +162,17 @@ create table emp(
 
 `  alter table emp add nickname varchar(20) comment '昵称';`
 
-**修改字段**
 
 **修改数据类型**： `ALTER TABLE 表名 MODIFY 字段名 新数据类型（长度）`
 
+
 **修改字段名和字段类型**：`ALTER TABLE 表名 CHANGE 旧字段名 新字段名 类型（长度） [COMMENT 注释] [约束]`
+
 
 例子： 将`emp`表中的`nickname`字段修改为`username`，类型位`VARCHAR(30)`。
 
 ` alter table emp change nickname username varchar(30) comment '用户名' ;`
+
 
 **删除字段**: `ALTER TABLE 表名 DROP 字段名`
 
@@ -178,11 +180,16 @@ create table emp(
 
 ` alter table emp drop username;`
 
+<img src="../pictures/SQLS12P7.png" alt="实际例子" width="600"/>
+
 **修改表名** `ALTER TABLE 表名 RENAME TO 新表名`
+
 
 例子： 将`emp`表名修改位`employee`。
 
 `alter table emp rename to employee;`
+
+<img src="../pictures/SQLS12P8.png" alt="实际例子" width="600"/>
 
 #### （6）表操作-删除
 **删除表**： `DROP TABLE[IF EXISTS] 表名`；
