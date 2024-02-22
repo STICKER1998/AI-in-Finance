@@ -58,7 +58,7 @@ Windows: [MySQL](https://dev.mysql.com/downloads/installer/)
 （4） DCL(Data Control Language)：数据控制语言，用来创建数据库用户，控制数据库的访问权限；
 
 ### 3. DDL语句
-（1） 数据库操作
+#### （1）数据库操作
   - **查询**： 查询所有数据库 `SHOW DATABASES`， 查询当前数据库  `SHOW DATABASE()`
 <img src="../pictures/SQLS12P1.png" alt="数据库查询" width="600"/>
     
@@ -71,14 +71,14 @@ Windows: [MySQL](https://dev.mysql.com/downloads/installer/)
   - **使用**： `USE 数据库名`
 <img src="../pictures/SQLS12P4.png" alt="数据库使用以及查询在哪个数据库" width="600"/>
 
-（2）表操作-查询
+#### （2）表操作-查询
   - **查询当前数据库所有表**：`SHOW TABLES`;
     
   - **查询表结构**: `DESC 表名`；
    
   - **查询指定表的建表语句**： `SHOW CREATE TABLE 表名`
 
- （3）表操作-创建
+ #### （3）表操作-创建
   ```
     CREATE TABLE 表名(
       字段1 字段类型[COMMENT 字段1注释]
@@ -88,7 +88,7 @@ Windows: [MySQL](https://dev.mysql.com/downloads/installer/)
   ```
  <img src="../pictures/SQLS12P5.png" alt="例子" width="600"/>
 
-（4）表操作-数据类型
+#### （4）表操作-数据类型
    **数值类型** 
 | 类型 | 大小 | 有符号(SIGNED)范围 | 无符号(UNSIGNED)范围 | 描述 |
 | :---: | :---: | :---: | :---: | :---: |
@@ -155,10 +155,38 @@ create table emp(
 
 <img src="../pictures/SQLS12P6.png" alt="实际例子" width="600"/>
 
-（5）表操作-修改
+#### （5）表操作-修改
 **添加字段**: `ALTER TABLE 表名 ADD 字段名 类型（长度） [COMMENT 注释] [约束]`
 
 例子： 在上面的表格`emp`中增加一个新的字段`nickname`（不超过20个字符）。
+
 `  alter table emp add nickname varchar(20) comment '昵称';`
 
-**修改字段**:
+**修改字段**
+
+**修改数据类型**： `ALTER TABLE 表名 MODIFY 字段名 新数据类型（长度）`
+
+**修改字段名和字段类型**：`ALTER TABLE 表名 CHANGE 旧字段名 新字段名 类型（长度） [COMMENT 注释] [约束]`
+
+例子： 将`emp`表中的`nickname`字段修改为`username`，类型位`VARCHAR(30)`。
+
+` alter table emp change nickname username varchar(30) comment '用户名' ;`
+
+**删除字段**: `ALTER TABLE 表名 DROP 字段名`
+
+例子： 将`emp`表中的`username`字段删除。
+
+` alter table emp drop username;`
+
+**修改表名** `ALTER TABLE 表名 RENAME TO 新表名`
+
+例子： 将`emp`表名修改位`employee`。
+
+`alter table emp rename to employee;`
+
+#### （6）表操作-删除
+**删除表**： `DROP TABLE[IF EXISTS] 表名`；
+
+**删除指定表，并重新创建该表**：`TRUNCATED TABLE 表名`;
+
+
