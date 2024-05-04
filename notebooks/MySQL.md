@@ -106,7 +106,7 @@ Windows: [MySQL](https://dev.mysql.com/downloads/installer/)
 **字符串类型**
    | 类型 | 大小 | 描述 |
    | :---: | :---: | :---: |
-   | CHAR | $0-255$ bytes | 定长字符串 |
+   | CHAR | 0-255 bytes | 定长字符串 |
    | VARCHAR | 0 - 65535 bytes | 变长字符串 |
    | TINYBLOB | 0 - 255 bytes | 不超过 255 个字符的二进制数据 |
    | TINYTEXT | 0 - 255 bytes | 短文本字符串 |
