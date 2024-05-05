@@ -275,7 +275,17 @@ create table emp(
 
 `select distinct 字段列表 from 表名;`
 
-#### (2) 条件查询
+#### (2) 条件查询（where)
 
 `select 字段列表 from 表名 where 条件列表;`
+
+#### (3) 聚合函数(max)
+
+1.将一列数据作为整体，进行纵向计算
+
+2.常见聚合函数
+
+`count max min avg sum`
+
+3. null值不参与计算
 
