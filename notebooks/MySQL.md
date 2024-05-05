@@ -412,3 +412,18 @@ MySQL提供了很多字符串函数，常用的如下：
 - `ifnull(value1, value2)`: 如果value1不是null，则返回value1，否则返回value2；
 - `case when [con1] then [result1] [con2] then [result2] ...  else [default] end` : 如果条件1满足则返回结果1，...，否则返回default；
 - `case [expr] when [value1] then [result1] when [value2] then [result2]... else [default] end`：如果expr等于值1，则返回结果1，...，否则返回default；
+
+## Section 1.4 约束
+### 1.概述
+**概念**： 约束是作用于表中字段上的规则，用于限制存储在表中的数据；
+**目的**：保证数据库中数据的正确性，有效性和完整性；
+**分类**：非空约束，唯一约束，主键约束，默认约束，外键约束；
+
+### 2.约束的具体使用
+|字段名|字段含义|字段类型|约束条件|约束关键字|
+|:---: | :---: | :---:  |：---： |：---： |
+|id|ID唯一标识| int|主键且自动增长|PRIMARY KEY, AUTO_INCREMENT|
+|name| 姓名 | varchar(10)| 不为空，且唯一| NOT NULL, UNIQUE|
+|age| 年龄 | int | 大于0，并且小于等于120| check|
+|status| 状态| char(1)| 如果没有指定该值，则默认为1| DEFAULT|
+|gender| 性别| char(1)| 无 | |
