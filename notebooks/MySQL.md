@@ -407,3 +407,8 @@ MySQL提供了很多字符串函数，常用的如下：
 - `date_add(date, interval expr type)`：返回一个日期/时间值加上一个时间间隔expr后的时间值；
 - `datediff(date1, date2)`：返回起始时间date1和结束时间date2之间的天数;
 
+### 4.流程函数
+- `if(value, t, f)`： 如果value的值为true，则返回t，否则返回f；
+- `ifnull(valu1,value2)`:
+- `case when [value1] then [result1],..., else [default] end`
+- `case [expr] when [value1] then [result1],...,else [default] end`
