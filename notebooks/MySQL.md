@@ -410,5 +410,5 @@ MySQL提供了很多字符串函数，常用的如下：
 ### 4.流程函数
 - `if(value, t, f)`： 如果value的值为true，则返回值t，否则返回值f；
 - `ifnull(value1, value2)`: 如果value1不是null，则返回value1，否则返回value2；
-- `case when [value1] then [result1] ...  else [default] end`
-- `case [expr] when [value1] then [result1] ... else [default] end`
+- `case when [con1] then [result1] [con2] then [result2] ...  else [default] end` : 如果条件1满足则返回结果1，...，否则返回default；
+- `case [expr] when [value1] then [result1] when [value2] then [result2]... else [default] end`：如果expr等于值1，则返回结果1，...，否则返回default；
