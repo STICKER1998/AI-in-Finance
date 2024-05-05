@@ -393,3 +393,9 @@ MySQL提供了很多字符串函数，常用的如下：
 - `trim(str)`:去掉字符串头部和尾部的空格
 - `substring(str,start,len)`:返回字符串str从start位置起的len个长度的字符串
 
+### 2.数值函数
+- `ceil(x)\floor(x)`: 向上\向下取整；
+- `mod(x,y)`：返回x/y的模；
+- `rand()`：生成(0,1)之间的随机数
+- `round(x)`：四舍五入；
+
