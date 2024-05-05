@@ -262,12 +262,20 @@ create table emp(
 ### 6.DQL语句
 #### （1）基本查询语句
 **查询多个字段** 
-`select 字段1, 字段2,... from 表名`
 
-`select * from 表名`
+`select 字段1, 字段2,... from 表名;`
+
+`select * from 表名;`
 
 **设置别名**
-`select 字段1 [as 别名1], 字段2[as 别名2],... from 表名`
+
+`select 字段1 [as 别名1], 字段2[as 别名2],... from 表名;`
 
 **去除重复记录**
-`select distinct 字段列表 from 表名`
+
+`select distinct 字段列表 from 表名;`
+
+#### (2) 条件查询
+
+`select 字段列表 from 表名 where 条件列表;`
+
