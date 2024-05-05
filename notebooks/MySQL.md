@@ -360,3 +360,17 @@ alter user '用户名'@'主机名' identified with mysql_native_passport '新密
 drop user '用户名'@'主机名';
 ```
 
+#### （5）权限控制
+Mysql 定义了很多权限，我们讲如下几种
+**查询权限** 
+
+```show grants for '用户名'@'主机名'```
+
+**授予权限**
+
+```grant 权限列表 on 数据库名.表名 to '用户名'@'主机名'```
+
+**撤销权限** 
+
+``` revoke 权限列表 on 数据库名.表名 to '用户名'@'主机名'```
+
