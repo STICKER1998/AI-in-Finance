@@ -428,3 +428,19 @@ MySQL提供了很多字符串函数，常用的如下：
 |age| 年龄 | int | 大于0，并且小于等于120| CHECK |
 |status| 状态| char(1)| 如果没有指定该值，则默认为1| DEFAULT|
 |gender| 性别| char(1)| 无 | |
+
+```
+create table user(
+    id int primary key auto_increment comment 'id主键',
+    name varchar(10) not null unique  comment '姓名',
+    age int check ( age>0 and age<=120) comment '年龄',
+    status char(1) default '1' comment '状态',
+    gender char(1) comment '性别'
+) comment '用户表';
+```
+
+### 3.外键约束
+
+外键用来将两张表的数据之间建立连接，从而保证数据的一致性和完整性。
+
+
