@@ -317,3 +317,13 @@ ASC: 升序    DESC：降序
 1. 起始索引从0开始, 起始索引 = （查询页码-1）*每页显示记录;
 2. 分页查询是数据库的方言，不同的数据库有不同的实现； mySQL是LIMIT；
 3. 如果查询的是第一页数据，起始索引可以省略，直接简写为limit 10.
+
+
+#### (7) DQL语句执行顺序
+**DQL语句的编写顺序**
+
+```
+select 字段列表 from 表名列表 where 条件列表 group by 分组字段列表 having 分组后条件列表 order by 排序字段列表 limit 分页参数
+```
+
+执行顺序和编写顺序不同，首先执行`from`，接着执行`where`以及`group by`，再执行`select`， 最后执行`order by`和`limit`。 
