@@ -287,5 +287,13 @@ create table emp(
 
 `count max min avg sum`
 
-3. null值不参与计算
+3.null值不参与计算
+
+#### (4) 分组查询
+
+`select 字段列表 from 表名[where 条件] group by 分组字段名 [having 分组后过滤条件]`
+
+where 与 having区别
+1. 执行时机不同： where是分组前进行过滤，不满足where条件，不参与分组；而having是分组之后对结果进行过滤；
+2. 判断条件不同：where不能对聚合函数进行判断，而having可以；
 
