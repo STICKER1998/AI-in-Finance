@@ -399,3 +399,11 @@ MySQL提供了很多字符串函数，常用的如下：
 - `rand()`：生成(0,1)之间的随机数
 - `round(x)`：四舍五入；
 
+### 3.日期函数
+- `curdate()`：返回当前日期;
+- `curtime()`:返回当前时间；
+- `now()`：返回当前日期和时间；
+- `year(date)/month(date)/day(date)`：获取指定date的年/月/；
+- `date_add(date, interval expr type)`：返回一个日期/时间值加上一个时间间隔expr后的时间值；
+- `datediff(date1, date2)`：返回起始时间date1和结束时间date2之间的天数;
+
