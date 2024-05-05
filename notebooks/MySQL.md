@@ -279,7 +279,7 @@ create table emp(
 
 `select 字段列表 from 表名 where 条件列表;`
 
-#### (3) 聚合函数(max)
+#### (3) 聚合函数
 
 1.将一列数据作为整体，进行纵向计算
 
@@ -293,7 +293,15 @@ create table emp(
 
 `select 字段列表 from 表名[where 条件] group by 分组字段名 [having 分组后过滤条件]`
 
-where 与 having区别
-1. 执行时机不同： where是分组前进行过滤，不满足where条件，不参与分组；而having是分组之后对结果进行过滤；
-2. 判断条件不同：where不能对聚合函数进行判断，而having可以；
+1.where 与 having区别
+   
+   执行时机不同： where是分组前进行过滤，不满足where条件，不参与分组；而having是分组之后对结果进行过滤；
+   
+   判断条件不同：where不能对聚合函数进行判断，而having可以；
+
+2.注意
+   执行顺序： where>聚合函数>having；
+
+   分组之后，查询的字段一般为聚合函数和分组字段，查询其他字段无意义；
+
 
