@@ -143,7 +143,7 @@ Windows: [MySQL](https://dev.mysql.com/downloads/installer/)
 - 7. 入职时间 (取值年月日即可)
 
 其SQL语句如下：
-```
+```sql
 create table emp(
    id INT comment '编号',
    workno VARCHAR(10) comment '工号',
@@ -222,9 +222,13 @@ create table emp(
 
 例子：给employee表段添加一条数据。因为时添加完整的一条数据，所以有两种写法： 
 
-`insert into employee(id, workno, name,gender,age,idcard,entrydate) values(1,'1','Itcast','男',10,'123456789012345678','2000-01-01');`
+```sql
+insert into employee(id, workno, name,gender,age,idcard,entrydate) values(1,'1','Itcast','男',10,'123456789012345678','2000-01-01');
+```
 
-`insert into employee values(2, '2','Itcast2','男',18,'123456789012345678','2005-01-01');`
+```
+insert into employee values(2, '2','Itcast2','男',18,'123456789012345678','2005-01-01');
+```
 
 如果要一次性插入两条数据：
 
