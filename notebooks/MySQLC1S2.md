@@ -331,6 +331,10 @@ select 字段列表 from 表名 where 条件列表;
 | Bill |
 | Zack |
 
+**代码**
+```sql
+select name from Customer where referee_id not in (2) or referee_id is null;
+```
 
 #### (3) 聚合函数
 
