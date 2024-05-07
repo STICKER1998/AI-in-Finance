@@ -537,5 +537,18 @@ select 字段列表 from 表1 right [outer] join 表2 on 条件...;
 ```
 select 字段列表 from 表A 别名A join 表A 别名B on 条件...;
 ```
+自连接可以是内连接也可以是外连接。
+
+自连接时要给表其两个别名。
+
+### 6.联合查询
+对于union 查询，就是要把多次查询的结果合并起来，形成一个新的查询结果集；
+
+```
+select 字段列表 from 表A...
+union [all]
+select 字段列表 from 表B...
+```
+
 ## Section 1.6 事务
 
