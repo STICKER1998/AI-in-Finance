@@ -452,8 +452,18 @@ create table user(
 
 ### 3.外键约束
 
-外键用来将两张表的数据之间建立连接，从而保证数据的一致性和完整性。
+**概念**： 外键用来将两张表的数据之间建立连接，从而保证数据的一致性和完整性。
 
+**语法**
+```
+create table 表名(
+   字段名 数据类型,
+   ...
+   [CINSTRAINT] [外键名称] foreign key (外键字段名) references 主表(主表列名)
+);
+```
+``` alter table 表名 add constraint 外键名称 foreign key(外键字段名) references 主表(主表列名);
+```
 
 ## Section 1.5 多表关系
 
