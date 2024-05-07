@@ -615,12 +615,12 @@ start transaction 或者 begin
 
 ### 5.事务的隔离级别
 **事务隔离级别**
-|隔离级别|脏读|不可重复读|幻读|
-| :---: | :---: | :---: | :---: |
+|隔离级别        |脏读   |不可重复读|幻读|
+| :---:          | :---: | :---: | :---: |
 |read uncommitted|有|有|有|
-|read committed|无|有|有|
-|repeatable read|无|无|有|
-|serializable|无|无|无|
+|read committed  |无|有|有|
+|repeatable read |无|无|有|
+|serializable    |无|无|无|
 
 **查看事务隔离级别**
 ```
