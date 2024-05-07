@@ -81,7 +81,7 @@ Windows: [MySQL](https://dev.mysql.com/downloads/installer/)
   - **查询指定表的建表语句**： `SHOW CREATE TABLE 表名`
 
  #### （3）表操作-创建
-  ```
+  ```sql
     CREATE TABLE 表名(
       字段1 字段类型[COMMENT 字段1注释]
       字段2 字段类型[COMMENT 字段2注释]
@@ -162,7 +162,9 @@ create table emp(
 
 例子： 在上面的表格`emp`中增加一个新的字段`nickname`（不超过20个字符）。
 
-`  alter table emp add nickname varchar(20) comment '昵称';`
+```sql
+alter table emp add nickname varchar(20) comment '昵称';
+```
 
 
 **修改数据类型**： `ALTER TABLE 表名 MODIFY 字段名 新数据类型（长度）`
@@ -173,14 +175,18 @@ create table emp(
 
 例子： 将`emp`表中的`nickname`字段修改为`username`，类型位`VARCHAR(30)`。
 
-` alter table emp change nickname username varchar(30) comment '用户名' ;`
+```sql
+alter table emp change nickname username varchar(30) comment '用户名' ;
+```
 
 
 **删除字段**: `ALTER TABLE 表名 DROP 字段名`
 
 例子： 将`emp`表中的`username`字段删除。
 
-` alter table emp drop username;`
+```sql
+alter table emp drop username;
+```
 
 <img src="../pictures/SQLS12P7.png" alt="实际例子" width="600"/>
 
@@ -189,7 +195,9 @@ create table emp(
 
 例子： 将`emp`表名修改位`employee`。
 
-`alter table emp rename to employee;`
+```sql 
+alter table emp rename to employee;
+```
 
 <img src="../pictures/SQLS12P8.png" alt="实际例子" width="600"/>
 
@@ -205,15 +213,25 @@ create table emp(
 ----------------
 ### 5. DML语句（增加，修改以及删除）
 #### （1）添加数据 `INSERT`
-**给指定字段添加数据**： `INSERT INTO 表名(字段名1， 字段名2,...) VALUES(值1，值2，...);`
+**给指定字段添加数据** 
+```sql
+INSERT INTO 表名(字段名1， 字段名2,...) VALUES(值1，值2，...);
+```
 
-**给全部字段添加数据**: `INSERT INTO 表名 VALUES(值1，值2，...);`
+**给全部字段添加数据**
+```sql 
+INSERT INTO 表名 VALUES(值1，值2，...);
+```
 
 **批量添加数据**
 
-`INSERT INTO 表名(字段名1，字段名2,...) VALUES(值1，值2，...),(值1，值2，...),(值1，值2，...);`
+```sql 
+INSERT INTO 表名(字段名1，字段名2,...) VALUES(值1，值2，...),(值1，值2，...),(值1，值2，...);
+```
 
-`INSERT INTO 表名 VALUES(值1，值2，...),(值1，值2，...),(值1，值2，...);`
+```sql 
+INSERT INTO 表名 VALUES(值1，值2，...),(值1，值2，...),(值1，值2，...);
+```
 
 注意事项
    - 插入数据时，指定的字段顺序需要与值的顺序时一一对应的；
@@ -232,7 +250,9 @@ insert into employee values(2, '2','Itcast2','男',18,'123456789012345678','2005
 
 如果要一次性插入两条数据：
 
-`insert into employee values(3, '3','Itcast3','男',38,'123456789012345678','2006-01-01'),(4, '4','Itcast4','男',48,'123456789012345678','2007-01-01');`
+```sql
+insert into employee values(3, '3','Itcast3','男',38,'123456789012345678','2006-01-01'),(4, '4','Itcast4','男',48,'123456789012345678','2007-01-01');
+```
 
 #### （2）修改数据 `UPDATE'
 
@@ -240,25 +260,38 @@ insert into employee values(2, '2','Itcast2','男',18,'123456789012345678','2005
 
 例子1：更新id=1的数据。
 
-`update employee set name = 'itcast1' where id = 1;`
+```sql 
+update employee set name = 'itcast1' where id = 1;
+```
 
-`update employee set name = 'itcast1', gender = '女' where id = 1;`
+```sql
+update employee set name = 'itcast1', gender = '女' where id = 1;
+```
 
 例子2： 更新所有人的数据。
 
-`update employee set entrydate = '2008-01-01';`
+```sql
+update employee set entrydate = '2008-01-01';
+```
 
 
 #### （3）删除数据 `DELETE`
-**删除数据**： `DELETE FROM 表名 [WHERE 条件]`
+**删除数据**
+```sql 
+DELETE FROM 表名 [WHERE 条件]
+```
 
 例子1： 删除女性数据。
 
-`delete from employee where gender = '女';`
+```sql
+delete from employee where gender = '女';
+```
 
 例子2： 删除所有数据。
 
-`delete from employee;`
+```sql 
+delete from employee;
+```
 
 注意：使用`UPDATE`和`DELETE`语句时，将对所有数据进行修改和删除，这是一个非常危险的操作。
 
@@ -267,21 +300,31 @@ insert into employee values(2, '2','Itcast2','男',18,'123456789012345678','2005
 #### （1）基本查询语句
 **查询多个字段** 
 
-`select 字段1, 字段2,... from 表名;`
+```sql
+select 字段1, 字段2,... from 表名;
+```
 
-`select * from 表名;`
+```sql
+select * from 表名;
+```
 
 **设置别名**
 
-`select 字段1 [as 别名1], 字段2[as 别名2],... from 表名;`
+```sql 
+select 字段1 [as 别名1], 字段2[as 别名2],... from 表名;
+```
 
 **去除重复记录**
 
-`select distinct 字段列表 from 表名;`
+```sql
+select distinct 字段列表 from 表名;
+```
 
 #### (2) 条件查询（where)
 
-`select 字段列表 from 表名 where 条件列表;`
+```sql
+select 字段列表 from 表名 where 条件列表;
+```
 
 #### (3) 聚合函数
 
@@ -289,13 +332,17 @@ insert into employee values(2, '2','Itcast2','男',18,'123456789012345678','2005
 
 2.常见聚合函数
 
-`count max min avg sum`
+```sql
+count max min avg sum
+```
 
 3.null值不参与计算
 
 #### (4) 分组查询
 
-`select 字段列表 from 表名[where 条件] group by 分组字段名 [having 分组后过滤条件]`
+```sql
+select 字段列表 from 表名[where 条件] group by 分组字段名 [having 分组后过滤条件]
+```
 
 1.where 与 having区别
    
@@ -326,7 +373,7 @@ ASC: 升序    DESC：降序
 #### (7) DQL语句执行顺序
 **DQL语句的编写顺序**
 
-```
+```sql
 select 字段列表 from 表名列表 where 条件列表 group by 分组字段列表 having 分组后条件列表 order by 排序字段列表 limit 分页参数
 ```
 
@@ -334,7 +381,7 @@ select 字段列表 from 表名列表 where 条件列表 group by 分组字段�
 
 执行顺序和编写顺序不同，首先执行`from`，接着执行`where`以及`group by`，再执行`select`， 最后执行`order by`和`limit`。 
 
-```
+```sql
 from -> where -> group by -> having -> select ->limit
 ```
 
@@ -345,23 +392,23 @@ DCL英文全称是Data Control Language，用来管理数据库用户，控制�
 **查询用户**
 
 用户信息都存在了mysql文件夹下的user表中； 一般根据用户名和主机地址同时定位：当前用户只能在哪一个主机上访问SQL。
-```
+```sql
 use mysql
 select * from user;
 ```
 
 **创建用户**
-```
+```sql
 create user '用户名'@'主机名' identified by '密码';
 ```
 
 **修改用户密码**
-```
+```sql
 alter user '用户名'@'主机名' identified with mysql_native_passport '新密码';
 ```
 
 **删除用户**
-```
+```sql
 drop user '用户名'@'主机名';
 ```
 
@@ -370,15 +417,21 @@ Mysql 定义了很多权限，我们讲如下几种
 
 **查询权限** 
 
-```show grants for '用户名'@'主机名'```
+```sql
+show grants for '用户名'@'主机名'
+```
 
 **授予权限**
 
-```grant 权限列表 on 数据库名.表名 to '用户名'@'主机名'```
+```sql
+grant 权限列表 on 数据库名.表名 to '用户名'@'主机名'
+```
 
 **撤销权限** 
 
-``` revoke 权限列表 on 数据库名.表名 from '用户名'@'主机名'```
+```sql
+revoke 权限列表 on 数据库名.表名 from '用户名'@'主机名'
+```
 
 
 **注意**
@@ -444,7 +497,7 @@ MySQL提供了很多字符串函数，常用的如下：
 |status| 状态| char(1)| 如果没有指定该值，则默认为1| DEFAULT|
 |gender| 性别| char(1)| 无 | |
 
-```
+```sql
 create table user(
     id int primary key auto_increment comment 'id主键',
     name varchar(10) not null unique  comment '姓名',
@@ -460,7 +513,7 @@ create table user(
 
 **添加外键**
 
-```
+```sql
 create table 表名(
    字段名 数据类型,
    ...
@@ -474,7 +527,7 @@ create table 表名(
 
 **删除外键**
 
-```
+```sql
 alter table 表名 drop foreign key 外键名称;
 ```
 
@@ -488,7 +541,7 @@ alter table 表名 drop foreign key 外键名称;
 |set default|附表有更新时，子表将外键列设置为一个默认的值。|
 
 
-```
+```sql
  alter table 表名 add constraint 外键名称 foreign key(外键字段名) references 主表(主表列名) on update cascade on delete cascade;
 ```
 
@@ -514,12 +567,12 @@ alter table 表名 drop foreign key 外键名称;
 
 ###  3.内连接
 - 隐式内连接
-```
+```sql
 select 字段列表 from 表1,表2 where 条件...;
 ```
 
 - 显式内连接
-```
+```sql
 select 字段列表 from 表1 [inner] join 表2 on 连接条件...;
 ```
 
@@ -527,18 +580,18 @@ select 字段列表 from 表1 [inner] join 表2 on 连接条件...;
 
 ### 4.外连接
 **左外连接**：查询表1（左表）的所有数据，包含表1和表2交集部分的数据
-```
+```sql
 select 字段列表 from 表1 left [outer] join 表2 on 条件...;
 ```
 
 **右外连接**：查询表2（右表）的所有数据，包含表1和表2交集部分的数据
-```
+```sql
 select 字段列表 from 表1 right [outer] join 表2 on 条件...;
 ```
 
 ### 5.自连接
 **自连接查询语法**
-```
+```sql
 select 字段列表 from 表A 别名A join 表A 别名B on 条件...;
 ```
 自连接可以是内连接也可以是外连接。
@@ -548,7 +601,7 @@ select 字段列表 from 表A 别名A join 表A 别名B on 条件...;
 ### 6.联合查询
 对于union 查询，就是要把多次查询的结果合并起来，形成一个新的查询结果集；
 
-```
+```sql
 select 字段列表 from 表A...
 union [all]
 select 字段列表 from 表B...
@@ -558,7 +611,7 @@ select 字段列表 from 表B...
 
 ### 7.子查询
 **概念**：SQL语句中嵌套select语句，称为嵌套查询，又称为子查询。
-```
+```sql
 select * from t1 where column1 = (Select column1 from t2);
 ```
 **分类**
@@ -580,7 +633,7 @@ select * from t1 where column1 = (Select column1 from t2);
 ### 2.事务操作
 **查看/设置事务提交方式**
 
-```
+```sql
 select @@autocommit;
 -- 设置为手动提交
 set @@autocommit = 0; 
@@ -588,19 +641,19 @@ set @@autocommit = 0;
 
 **提交事务**
 
-```
+```sql
 commit;
 ```
 
 **回滚事务**
 
-```
+```sql
 rollback;
 ```
 
 **开启事务**
 
-```
+```sql
 start transaction 或者 begin
 ```
 
@@ -629,11 +682,11 @@ start transaction 或者 begin
 从上往下，隔离级别越来越高，数据安全性越来越高，但是性能越来越差。其中serialization隔离级别最高，此时对于一个数据库只能有一个事务在操作，不能多个事务并发。
 
 **查看事务隔离级别**
-```
+```sql
 select @@transaction_isolation;
 ```
 
 **设置事务的隔离级别**
-```
+```sql
 set [session|global] transaction isolation level [read uncommitted|read committed|repeatable read|serializable]
 ```
