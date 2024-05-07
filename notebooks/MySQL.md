@@ -622,11 +622,14 @@ start transaction 或者 begin
 |repeatable read |无|无|有|
 |serializable    |无|无|无|
 
+从上往下，隔离级别越来越高，数据安全性越来越高，但是性能越来越差。
+
 **查看事务隔离级别**
 ```
 select @@transaction_isolation;
 ```
 
+**设置事务的隔离级别**
 ```
 set [session|global] transaction isolation level [read uncommitted|read committed|repeatable read|serializable]
 ```
