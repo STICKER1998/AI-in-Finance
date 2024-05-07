@@ -507,5 +507,16 @@ alter table 表名 drop foreign key 外键名称;
      - 自连接
 - 子查询
 
+
+###  3.内连接
+- 隐式内连接
+```
+select 字段列表 from 表1,表2 where 条件...;
+```
+
+- 显式内连接
+```
+select 字段列表 from 表1 [inner] join 表2 on 连接条件...;
+```
 ## Section 1.6 事务
 
