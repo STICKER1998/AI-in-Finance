@@ -303,8 +303,33 @@ select 字段列表 from 表名 where 条件列表;
 |is null|是null|||
 
 **例子:寻找用户推荐人（leetcode 584）**
- <img src="../pictures/SQLLC584.png" alt="例子" width="600"/>
- 
+
+在表`Customer`中，`id`是该表的主键列，该表的每一行表示一个客户的id、姓名以及推荐他们的客户的id。找出那些没有被 id = 2 的客户推荐的客户的姓名，以任意顺序返回结果表。结果格式如下所示：
+
+| Column Name | Type    |
+|:---:|:---:|
+| id          | int     |
+| name        | varchar |
+| referee_id  | int     |
+
+**输入**
+
+|id | name | referee_id |
+|:---:|:---:|:---:|
+| 1  | Will | null       |
+| 2  | Jane | null       |
+| 3  | Alex | 2          |
+| 4  | Bill | null       |
+| 5  | Zack | 1          |
+| 6  | Mark | 2          |
+
+**输出**
+| name |
+|:---: |
+| Will |
+| Jane |
+| Bill |
+| Zack |
 
 
 #### (3) 聚合函数
