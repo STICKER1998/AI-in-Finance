@@ -575,6 +575,7 @@ select * from t1 where column1 = (Select column1 from t2);
 
 ### 2.事务操作
 **查看/设置事务提交方式**
+
 ```
 select @@autocommit;
 -- 设置为手动提交
@@ -582,11 +583,19 @@ set @@autocommit = 0;
 ```
 
 **提交事务**
+
 ```
 commit;
 ```
 
 **回滚事务**
+
 ```
 rollback;
+```
+
+**开启事务**
+
+```
+start transaction 或者 begin
 ```
