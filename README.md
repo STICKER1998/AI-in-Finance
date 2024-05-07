@@ -18,5 +18,6 @@ MySQL
 ==========================
 |章|小节|
 |:---:|:---:|
-|Chapter 1 MYSQL基础 |MySQL绪论 / SQL基础语句 / 函数 / 约束 / 多表查询 / 事务 |
+|Chapter 1 MySQL基础 |MySQL绪论  SQL基础语句  函数  约束  多表查询  事务 |
+|Chapter 2 MySQL进阶 |存储引擎  索引  SQL优化  视图/存储过程/触发器 锁 InnoDB引擎 MySQL管理|
 
