@@ -18,9 +18,5 @@ MySQL
 ==========================
 |章|小节|
 |:---:|:---:|
-|                    | Section 1.1 SQL概述 |
-|                    | Section 1.2 SQL基础语句|
-| Chapter 1 MYSQL基础|Section 1.3 函数|
-|                    |Section 1.4 约束|
-|                    |Section 1.5 多表查询|
-|                    |Section 1.6 事务|
+|Chapter 1 MYSQL基础 |MySQL绪论 / SQL基础语句 / 函数 / 约束 / 多表查询 / 事务 |
+
