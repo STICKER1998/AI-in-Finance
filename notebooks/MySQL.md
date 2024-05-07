@@ -614,10 +614,19 @@ start transaction 或者 begin
 |幻读|一个事务按照条件查询数据时，没有对应的数据行，但在插入数据时，有发现这行数据已经存在，好像出现了“幻影”|
 
 ### 5.事务的隔离级别
-事务隔离级别
+**事务隔离级别**
 |隔离级别|脏读|不可重复读|幻读|
 | :---: | :---: | :---: | :---: |
 |read uncommitted|有|有|有|
 |read committed|无|有|有|
 |repeatable read|无|无|有|
 |serializable|无|无|无|
+
+**查看事务隔离级别**
+```
+select @@transaction_isolation;
+```
+
+```
+set [session|global] transaction isolation level [read uncommitted|read committed|repeatable read|serializable]
+```
