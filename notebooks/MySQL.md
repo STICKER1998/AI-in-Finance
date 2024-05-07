@@ -552,5 +552,12 @@ select 字段列表 from 表B...
 
 注意：这里union all会直接合并所有查询结果，union会删除重复项。
 
+### 7.子查询
+**概念**：SQL语句中嵌套select语句，称为嵌套查询，又称为子查询。
+```
+select * from t1 where column1 = (Select column1 from t2);
+```
+**分类**：根据子查询结果不同我们可以将其又分为标量子查询，列子查询，行子查询以及表子查询四类。
+
 ## Section 1.6 事务
 
