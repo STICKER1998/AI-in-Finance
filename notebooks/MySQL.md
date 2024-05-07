@@ -484,6 +484,10 @@ alter table 表名 drop foreign key 外键名称;
 |set default|附表有更新时，子表将外键列设置为一个默认的值。|
 
 
+```
+ alter table 表名 add constraint 外键名称 foreign key(外键字段名) references 主表(主表列名) on update cascade on delete cascade;
+```
+
 ## Section 1.5 多表关系
 
 ## Section 1.6 事务
