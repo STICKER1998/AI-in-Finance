@@ -532,5 +532,10 @@ select 字段列表 from 表1 left [outer] join 表2 on 条件...;
 select 字段列表 from 表1 right [outer] join 表2 on 条件...;
 ```
 
+### 5.自连接
+**自连接查询语法**
+```
+select 字段列表 from 表A 别名A join 表A 别名B on 条件...;
+```
 ## Section 1.6 事务
 
