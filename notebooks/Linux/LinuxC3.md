@@ -36,7 +36,7 @@ sudo 其他命令
 - 切换到root用户，执行`visodu`命令，会自动通过vi编辑器打开：`/etc/sudoers`
 - 在文件的最后一行添加
   ```
-  普通用户用户名 ALL = (ALL) NOPASSPORT: ALL
+  普通用户用户名 ALL = (ALL) NOPASSWD: ALL
   ```
 - 通过`:wq`保存
 - 切换回普通用户
