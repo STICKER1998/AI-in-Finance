@@ -65,12 +65,20 @@ ls /
 - **home目录**：每个Linux操作用户在Linux系统的个人账户目录路径在：`/home/用户名`；
 - 在Windows和Linux系统下都设有home目录；
 
-### 3.cd(change directory)命令
+### 3.cd(change directory)/pwd(print work diewctory)命令
+#### (1) cd命令语法
 ```
 cd [linux路径]
 ```
 
 - cd命令无需选项，只有参数，表示要切换到哪个目录下；
 - cd命令直接执行，不写参数，表示回到用户的Home目录；
+
+#### (2) pwd命令语法
+```
+pwd
+```
+注意：pwd命令无选项，无参数。
+
 
   
