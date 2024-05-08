@@ -16,5 +16,11 @@ Linux内核可以从 [https://www.kernel.org/] 下载。内核是免费开源的
 ### 1.什么是虚拟机？
 通过虚拟化技术，在电脑内虚拟出计算机硬件并给出虚拟的硬件安装操作系统，即可得到一台虚拟的电脑，称之为虚拟机。虚拟机是由虚拟硬件和操作系统组成的。
 
+VMware 官网下载：
 [https://www.vmware.com/products/desktop-hypervisor.html]
+
+建议通过CSDN找资源下载。
+
+CentOS7下载:
+[https://pan.baidu.com/s/19hRg2LI1AuqXTQL9IoG5dw?pwd=9987#list/path=%2Fsharelink3232509500-712911551426175%2F1%E3%80%81Linux%E9%9B%B6%E5%9F%BA%E7%A1%80%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A%2F%E8%AF%BE%E7%A8%8B%E8%B5%84%E6%96%99%2F%E8%BD%AF%E4%BB%B6%E5%8C%85%2FCentOS%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85%E5%8C%85&parentPath=%2Fsharelink3232509500-712911551426175]
 
