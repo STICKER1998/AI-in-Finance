@@ -105,3 +105,4 @@ cd Desktop
 |`..`|表示上一级目录|`cd ..`表示切换到上一级目录，`cd ../..`表示切换到上两级目录|
 |`~`|表示Home目录|`cd ~`表示切换到Home目录，`cd ~/Desktop`和`cd /home/用户名/Desktop`一样|
 
+<img src="/pictures/Linux/LinuxS22P3.png" alt="特殊路径符" width="600"/>
