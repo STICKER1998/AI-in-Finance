@@ -9,7 +9,7 @@ Quant Finance
 | ---                       |---                                              |                                        
 |Transformer-based Models   |[Attention](./notebooks/Topic1.md), Transformer  |          
 |Factor Models              |         coming soon                             |
-|MySQL                      |  [MySQL](./notebooks/MySQL.md)                  |                                   
+|MySQL                      |  [MySQL](./notebooks/MySQL/MySQL.md)                  |                                   
 |Linux                      |    coming soon                                  |       
 |Python                     |    coming soon                                  |
  
@@ -20,6 +20,13 @@ MySQL
 |:---:|:---:|
 |Chapter 1 MySQL基础 |MySQL绪论  SQL基础语句  函数  约束  多表查询  事务 |
 |Chapter 2 MySQL进阶 |存储引擎  索引  SQL优化  视图/存储过程/触发器 锁 InnoDB引擎 MySQL管理|
+
+Linux操作系统
+==========================
+|章|
+|:---:|
+|[Chapter 1 操作系统概述](./notebooks/Linux/LinuxC1) |
+|[Chapter 2 Linux命令基础](./notebooks/Linux/LinuxC2)|
 
 
 
