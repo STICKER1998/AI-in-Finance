@@ -5,12 +5,12 @@ Quant Finance
 - 机器学习方法，Transformer（金融预测）, 遗传规划（因子挖掘）等；
 - 基础知识：MySQL，Linux，Python
 
-|Topics                     |         Contents                                |                                              
+|Topics                     |         Update                             |                                              
 | ---                       |---                                              |                                        
-|Transformer-based Models   |[Attention](./notebooks/Topic1.md), Transformer  |          
+|[Transformer-based Models](./notebooks/Topic1.md)   |2024/02/21 |          
 |Factor Models              |         coming soon                             |
-|MySQL                      |  [MySQL](#mysql)                  |                                   
-|Linux                      |    [Linux](#linux)                                  |       
+|[MySQL](#mysql)                   |        2024/05/07           |                                   
+| [Linux](#linux)                    |               2024/05/08                  |       
 |Python                     |    coming soon                                  |
  
 
