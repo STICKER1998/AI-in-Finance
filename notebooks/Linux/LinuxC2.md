@@ -80,6 +80,7 @@ pwd
 ```
 注意：pwd命令无选项，无参数。
 
-特殊
+ <img src="/pictures/Linux/LinuxS22P2.png" alt="cd/pwd 命令" width="600"/>
 
-  
+### 4.相对路径，绝对路径和特殊路径符
+
