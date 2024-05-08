@@ -23,10 +23,10 @@ MySQL
 
 Linux操作系统
 ==========================
-|章|
-|:---:|
-|[Chapter 1 操作系统概述](./notebooks/Linux/LinuxC1) |
-|[Chapter 2 Linux命令基础](./notebooks/Linux/LinuxC2)|
+|章|小节|
+|:---:|:---:|
+|[Chapter 1 操作系统概述](./notebooks/Linux/LinuxC1.md) |Linux操作系统，虚拟机（VMware安装）|
+|[Chapter 2 Linux命令基础](./notebooks/Linux/LinuxC2.md)|Linux目录结构， Linux命令入门|
 
 
 
