@@ -83,13 +83,14 @@ pwd
  <img src="/pictures/Linux/LinuxS22P2.png" alt="cd/pwd 命令" width="600"/>
 
 ### 4.相对路径，绝对路径和特殊路径符
+#### (1) 相对路径与绝对路径
 - **绝对路径**以根目录为起点，路径描述以`/`开头；
 - **相对路径**以当前目录为起点，路径描述无需以`/`开头；
 
 **例子**:比如我们想要进入位于home目录下的Desktop文件夹
 绝对路径写法
 ```
-cd /home/sticker98/Desktop
+cd /home/用户名/Desktop
 ```
 相对路径写法
 ```
@@ -97,10 +98,10 @@ cd
 cd Desktop
 ```
 
--**特殊路径符**
+#### (2) 特殊路径符
 |特殊路径符|意义|例子|
 |:---:|:---:|:---:|
 |.|表示当前目录|`cd./Desktop` 表示切换到当前目录下的Desktop目录内|
 |..|表示上一级目录|`cd..`表示切换到上一级目录，`cd../..`表示切换到上两级目录|
-|~|表示Home目录|`cd~`表示切换到Home目录，`cd~/Desktop`和`cd /home/sticker98/Desktop`一样|
+|~|表示Home目录|`cd~`表示切换到Home目录，`cd~/Desktop`和`cd /home/用户名/Desktop`一样|
 
