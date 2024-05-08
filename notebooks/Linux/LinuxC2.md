@@ -29,7 +29,7 @@ Chapter2 Linux 基础命令
 ls -l /home/test
 ```
 其中`ls`是命令，`-l`是选项，这一句命令表示以列表的形式显示 `/home/test`目录中的内容；
-<img src="../pictures/Linux/LinuxS22P1.png" alt="ls 命令" width="600"/>
+<img src="/pictures/Linux/LinuxS22P1.png" alt="ls 命令" width="600"/>
 ### 2.ls(list files)命令
 #### 1.ls命令语法
 ls命令的作用是列出目录下的内容，语法细节如下：
