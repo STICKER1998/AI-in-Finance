@@ -9,7 +9,7 @@ Quant Finance
 | ---                       |---                                              |                                        
 |Transformer-based Models   |[Attention](./notebooks/Topic1.md), Transformer  |          
 |Factor Models              |         coming soon                             |
-|MySQL                      |  [MySQL](./notebooks/MySQL/MySQL.md)                  |                                   
+|MySQL                      |  [MySQL](#mysql)                  |                                   
 |Linux                      |    coming soon                                  |       
 |Python                     |    coming soon                                  |
  
