@@ -27,3 +27,8 @@ CentOS7下载:
 各类软件均可从此下载
 [https://pan.baidu.com/s/19hRg2LI1AuqXTQL9IoG5dw?pwd=9987]
 
+## Section 1.3 远程连接Linux: FinalShell
+- 在VMware虚拟机的桌面的空白位置右键'open terminal'打开终端；
+- 在终端中输入`ifconfig`，定位到`ens33`位置找到主机ip；
+- 在FinalShell中点击左上角文件夹的图标通过SSH创建和VMware的连接；
+
