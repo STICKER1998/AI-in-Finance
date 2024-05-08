@@ -21,3 +21,7 @@ MySQL
 |Chapter 1 MySQL基础 |MySQL绪论  SQL基础语句  函数  约束  多表查询  事务 |
 |Chapter 2 MySQL进阶 |存储引擎  索引  SQL优化  视图/存储过程/触发器 锁 InnoDB引擎 MySQL管理|
 
+
+
+git 使用注意事项
+- `ipconfig/flushdns`：以刷新DNS缓存，常在`git pull`,`git push`前使用。
