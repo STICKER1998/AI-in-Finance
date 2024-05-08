@@ -106,3 +106,14 @@ cd Desktop
 |`~`|表示Home目录|`cd ~`表示切换到Home目录，`cd ~/Desktop`和`cd /home/用户名/Desktop`一样|
 
 <img src="/pictures/Linux/LinuxS22P3.png" alt="特殊路径符" width="600"/>
+
+### 5.mkdir(make directory)命令
+通过`mkdir`命令可以创建新的目录。
+```
+mkdir [-p] linux路径
+```
+- 参数必填，表示linux路径，即要创建的文件夹的路径，相对路径和绝对路径均可；
+- `-p`选项可选， 表示自动创建不存在的父目录，适用于创建连续多层级的目录；
+
+
+
