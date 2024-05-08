@@ -29,14 +29,20 @@ Chapter2 Linux 基础命令
 ls -l /home/test
 ```
 其中`ls`是命令，`-l`是选项，这一句命令表示以列表的形式显示 `/home/test`目录中的内容；
-<img src="/pictures/Linux/LinuxS22P1.png" alt="ls 命令" width="600"/>
+
 ### 2.ls(list files)命令
-#### 1.ls命令语法
-ls命令的作用是列出目录下的内容，语法细节如下：
+#### 1.`ls`命令语法
+`ls`命令的作用是列出目录下的内容，语法细节如下：
 ```
 ls [-a -l -h] [linux 路径]
 ```
 当不使用选项和参数，直接使用ls本身，则以平铺的形式列出当前工作目录下的内容；
+<img src="/pictures/Linux/LinuxS22P1.png" alt="ls 命令" width="600"/>
 
-#### 2.当前工作目录和Home目录
-Linux系统的命令行终端
+#### 2.home目录
+- Linux系统的命令行终端在执行命令时，需要一个**当前工作目录**；
+- 在启动的时候会默认加载home目录。当前登陆用户的home目录作为当前工作目录，所以在上面的命令后列出的时home目录的内容；
+- **home目录**：每个Linux操作用户在Linux系统的个人账户目录路径在：`/home/用户名`；
+- 在Windows和Linux系统下都设有home目录；
+
+
