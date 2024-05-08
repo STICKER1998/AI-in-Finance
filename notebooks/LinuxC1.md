@@ -32,3 +32,7 @@ CentOS7下载:
 - 在终端中输入`ifconfig`，定位到`ens33`位置找到主机ip；
 - 在FinalShell中点击左上角文件夹的图标通过SSH创建和VMware的连接；
 
+注意事项：
+- 如果重启虚拟机，ip地址有可能变化，此时你需要在FinalShell中修改你的ip地址；
+- 在使用FinalShell时，请勿关闭虚拟机，只能最小化；
+
