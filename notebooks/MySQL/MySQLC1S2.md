@@ -15,7 +15,7 @@ Section 1.2 SQL基本语句
 ----------------
 ## 3. DDL语句
 ### 3.1 数据库操作
-#### 查询
+#### 3.1.1 查询数据库
 **查询所有数据库**
 ```
 SHOW DATABASES
@@ -27,24 +27,24 @@ SHOW DATABASE()
 
 <img src="/pictures/MySQL/SQLS12P1.png" alt="数据库查询" width="600"/>
     
-#### 创建
+#### 3.1.2 创建数据库
 ```
 CREATE DATABASE [IF NOT EXISTS] 数据库名 [DEFAULT CHARSET 字符集名] [COLLATE 排序规则]
 ```
 上面的语句中所有的方括号中的内容都是可选的， 第一个括号中的`[IF NOT EXISTS]`如果没有并且你创建的Database已经存在则会报错。
 <img src="/pictures/MySQL/SQLS12P2.png" alt="数据库创建" width="600"/>
     
-#### 删除
+#### 3.1.3 删除数据库
 ```
 DROP DATABASE [IF EXISTS] 数据库名
 ```
 <img src="/pictures/MySQL/SQLS12P3.png" alt="数据库删除" width="600"/>
 
-#### 使用
+#### 3.1.4 使用数据库
 ```
 USE 数据库名
 ```
-<img src="../pictures/SQLS12P4.png" alt="数据库使用以及查询在哪个数据库" width="600"/>
+<img src="/pictures/MySQL/SQLS12P4.png" alt="数据库使用以及查询在哪个数据库" width="600"/>
 
 #### （2）表操作-查询
   - **查询当前数据库所有表**：`SHOW TABLES`;
