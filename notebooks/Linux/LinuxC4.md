@@ -23,3 +23,29 @@ Chapter 4 Linux实用操作
 
 **清空**
 `Ctrl+a`/`clear`：清空屏幕
+
+## Section 4.2 软件安装
+```
+yum [-r] [install | remove | search] 软件名称
+```
+|选项|功能|
+|:---:|:-:|
+|install| 安装|
+|remove|卸载|
+|search|搜索|
+
+**注意**
+- `yum`命令需要root权限，可以`su`切换到`root`或者使用`sudo`临时提权；
+- `yum`命令需要联网；
+
+**例子**：利用`yum`软件搜索并安装`wget`程序
+```
+yum [-r] search wget
+yum [-r] install wget
+```
+如果使用`yum -y install wget`，在安装过程中所有选项都会选择确定；
+
+
+
+
+
