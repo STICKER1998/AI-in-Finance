@@ -120,3 +120,6 @@ ntpdate -u ntp.aliyun.com
 ifconfig
 ```
 
+### 2.特殊IP地址
+
+
