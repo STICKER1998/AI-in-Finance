@@ -144,6 +144,12 @@ IP地址非常复杂，难以记忆，我们可以通过域名解析来解决这
 - 先查看本机的记录：Linux系统中在/etc/hosts
 - 再联网去DNS服务器询问
   
+### 5.配置主机名映射
+FinalShell通过IP地址连接到了Linux服务器，我们也可以通过主机名（域名）来连接。
 
+- 以管理员身份运行记事本；
+- 打开`C:\Windows\System32\drivers\etc\hosts`；
+- 在最后编写`Linux系统的IP地址 主机名`并保存；
+- 在FinalShell中将IP地址连接改成主机名(`centos`)连接；
 
 
