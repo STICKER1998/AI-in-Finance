@@ -70,3 +70,16 @@ systemctl start|stop|status|enable|disable 服务名
 |network|副网络服务|
 |firewalld|防火墙服务|
 |sshd|ssh服务|
+
+大部分软件安装后会自动集成到systemctl中，但对于部分软件需要手动添加。
+
+## Section 4.4 软链接
+在系统中创建软链接，可以将文件，文件夹链接到其他位置，类似于windows中的快捷方式。
+
+```
+ln -s 参数1 参数2
+```
+- 选项-s，创建软链接
+- 参数1，被链接的文件或者文件夹；
+- 参数2，要链接去的目的地；
+
