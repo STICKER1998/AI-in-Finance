@@ -1,31 +1,49 @@
-MySQL
-=================================
-## Section 1.2 SQL基本语句
-### 1. SQL通用语法
+Section 1.2 SQL基本语句
+============================
+## 1. SQL通用语法
 - **以分号结尾**： SQL语句可以单行或者多行书写，以`;`结尾;
 - **使用空格**：SQL语句可以使用空格或者缩进来增强语句的可读性，在执行SQL语句时，所有的空格都会被忽略；
 - **SQL语句的大小写**：MySQL数据库的SQL语句不区分大小写。但是，习惯上**关键字使用大写，而对于所有列和表名使用小写**，这样做使得代码更易于阅读和调试；
 - **SQL语句注释**：(1) 单行注释时使用`--`注释内容或者`#`注释内容（MySQL特有）； (2) 多行注释时使用`/*注释内容*/`；
 
-### 2. SQL语句的分类
+## 2. SQL语句的分类
 - DDL(Data Definition Language)： 数据定义语言，用来定义数据库对象（数据库，表，字段）；
 - DML(Data Manipulation Language)： 数据操作语言， 用来对数据表中的数据进行增删改操作；
 - DQL(Data Query Language)：数据查询语言，用来查询数据库中表的记录；
 - DCL(Data Control Language)：数据控制语言，用来创建数据库用户，控制数据库的访问权限；
 
 ----------------
-### 3. DDL语句
-#### （1）数据库操作
-  - **查询**： 查询所有数据库 `SHOW DATABASES`， 查询当前数据库  `SHOW DATABASE()`
+## 3. DDL语句
+### 3.1 数据库操作
+#### 查询
+**查询所有数据库**
+```
+SHOW DATABASES
+```
+**查询当前数据库**
+```
+SHOW DATABASE()
+```
+
 <img src="/pictures/MySQL/SQLS12P1.png" alt="数据库查询" width="600"/>
     
-  - **创建**： `CREATE DATABASE [IF NOT EXISTS] 数据库名 [DEFAULT CHARSET 字符集名] [COLLATE 排序规则] `； 上面的语句中所有的方括号中的内容都是可选的， 第一个括号中的`[IF NOT EXISTS]`如果没有并且你创建的Database已经存在则会报错。
+#### 创建
+```
+CREATE DATABASE [IF NOT EXISTS] 数据库名 [DEFAULT CHARSET 字符集名] [COLLATE 排序规则]
+```
+上面的语句中所有的方括号中的内容都是可选的， 第一个括号中的`[IF NOT EXISTS]`如果没有并且你创建的Database已经存在则会报错。
 <img src="/pictures/MySQL/SQLS12P2.png" alt="数据库创建" width="600"/>
     
-  - **删除**： `DROP DATABASE [IF EXISTS] 数据库名`
+#### 删除
+```
+DROP DATABASE [IF EXISTS] 数据库名
+```
 <img src="/pictures/MySQL/SQLS12P3.png" alt="数据库删除" width="600"/>
 
-  - **使用**： `USE 数据库名`
+#### 使用
+```
+USE 数据库名
+```
 <img src="../pictures/SQLS12P4.png" alt="数据库使用以及查询在哪个数据库" width="600"/>
 
 #### （2）表操作-查询
