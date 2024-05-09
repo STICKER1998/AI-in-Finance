@@ -18,42 +18,42 @@ Section 1.2 SQL基本语句
 #### 3.1.1 查询数据库
 **查询所有数据库**
 ```
-SHOW DATABASES
+SHOW DATABASES;
 ```
 **查询当前数据库**
 ```
-SHOW DATABASE()
+SHOW DATABASE();
 ```
 
 <img src="/pictures/MySQL/SQLS12P1.png" alt="数据库查询" width="600"/>
     
 #### 3.1.2 创建数据库
 ```
-CREATE DATABASE [IF NOT EXISTS] 数据库名 [DEFAULT CHARSET 字符集名] [COLLATE 排序规则]
+CREATE DATABASE [IF NOT EXISTS] 数据库名 [DEFAULT CHARSET 字符集名] [COLLATE 排序规则];
 ```
 上面的语句中所有的方括号中的内容都是可选的， 第一个括号中的`[IF NOT EXISTS]`如果没有并且你创建的Database已经存在则会报错。
 <img src="/pictures/MySQL/SQLS12P2.png" alt="数据库创建" width="600"/>
     
 #### 3.1.3 删除数据库
 ```
-DROP DATABASE [IF EXISTS] 数据库名
+DROP DATABASE [IF EXISTS] 数据库名;
 ```
 <img src="/pictures/MySQL/SQLS12P3.png" alt="数据库删除" width="600"/>
 
 #### 3.1.4 使用数据库
 ```
-USE 数据库名
+USE 数据库名;
 ```
 <img src="/pictures/MySQL/SQLS12P4.png" alt="数据库使用以及查询在哪个数据库" width="600"/>
 
-#### （2）表操作-查询
-  - **查询当前数据库所有表**：`SHOW TABLES`;
-    
-  - **查询表结构**: `DESC 表名`；
-   
-  - **查询指定表的建表语句**： `SHOW CREATE TABLE 表名`
+### 3.2 表操作-查询
+- **查询当前数据库所有表**：`SHOW TABLES;`
 
- #### （3）表操作-创建
+- **查询表结构**: `DESC 表名;`
+
+- **查询指定表的建表语句**： `SHOW CREATE TABLE 表名;`
+
+ ### 3.3 表操作-创建
   ```sql
     CREATE TABLE 表名(
       字段1 字段类型[COMMENT 字段1注释]
@@ -63,8 +63,8 @@ USE 数据库名
   ```
  <img src="/pictures/MySQL/SQLS12P5.png" alt="例子" width="600"/>
 
-#### （4）表操作-数据类型
-   **数值类型** 
+### 3.4 表操作-数据类型
+#### 3.4.1 数值类型 
 | 类型 | 大小 | 有符号(SIGNED)范围 | 无符号(UNSIGNED)范围 | 描述 |
 | :---: | :---: | :---: | :---: | :---: |
 | TINYINT | 1 byte | (-128, 127) | (0, 255) | 小整数值 |
@@ -76,25 +76,25 @@ USE 数据库名
 | DOUBLE | 8 bytes | (-1.7976931348623157 E+308,1.7976931348623157 E+308) | 0 和 (2.2250738585072014 E-308,1.7976931348623157 E+308) | 双精度浑点数值 |
 | DECIMAL |  | 依赖于M(精度) 和D (标度) 的值 | 依赖于M (精度) 和D (标度) 的值 | 小数值 (精碥定点数) |
 
-**字符串类型**
-   | 类型 | 大小 | 描述 |
-   | :---: | :---: | :---: |
-   | CHAR | 0-255 bytes | 定长字符串 |
-   | VARCHAR | 0 - 65535 bytes | 变长字符串 |
-   | TINYBLOB | 0 - 255 bytes | 不超过 255 个字符的二进制数据 |
-   | TINYTEXT | 0 - 255 bytes | 短文本字符串 |
-   | BLOB | 0 - 65535 bytes | 二进制形式的长文本数据 |
-   | TEXT | 0 - 65535 bytes | 长文本数据 |
-   | MEDIUMBLOB | 0-16 777 215 bytes | 二进制形式的中等长度文本数据 |
-   | MEDIUMTEXT | 0-16 777 215 bytes | 中等长度文本数据 |
-   | LONGBLOB | 0- 4 294 967 295 bytes | 二进制形式的极大文本数据 |
-   | LONGTEXT | 0- 4 294 967 295 bytes | 极大文本数据 |
+#### 3.4.2 字符串类型
+| 类型 | 大小 | 描述 |
+| :---: | :---: | :---: |
+| CHAR | 0-255 bytes | 定长字符串 |
+| VARCHAR | 0 - 65535 bytes | 变长字符串 |
+| TINYBLOB | 0 - 255 bytes | 不超过 255 个字符的二进制数据 |
+| TINYTEXT | 0 - 255 bytes | 短文本字符串 |
+| BLOB | 0 - 65535 bytes | 二进制形式的长文本数据 |
+| TEXT | 0 - 65535 bytes | 长文本数据 |
+| MEDIUMBLOB | 0-16 777 215 bytes | 二进制形式的中等长度文本数据 |
+| MEDIUMTEXT | 0-16 777 215 bytes | 中等长度文本数据 |
+| LONGBLOB | 0- 4 294 967 295 bytes | 二进制形式的极大文本数据 |
+| LONGTEXT | 0- 4 294 967 295 bytes | 极大文本数据 |
 
    一般我们只是用`CHAR` 和`VARCHAR`，其余类型一般不使用，我们虽然最开始都要指定定长，但是CHAR对于多于位置会用0补充（性能好，不需要判断占用空间），但是对于VARCHAR来说它会根据输入来判断占用空间（性能相对较差）。
    - 例子1： 如果我们想要存储用户名，规定其最长长度不得大于50位，此时使用`VARCHAR(50)`更好，因为用户输入的用户名不一样长。
    - 例子2： 如果想要储存用户性别， 此时推荐使用`CHAR(1)`，因为性别的输入固定长度的。
 
-**日期类型**
+#### 3.4.3 日期类型
 | 类型 | 大小 | 范围 | 格式 | 描述 |
 | :---: | :---: | :---: | :---: | :---: |
 | DATE | 3 | 1000-01-01 至 9999-12-31 | YYYY-MM-DD | 日期值 |
@@ -130,7 +130,7 @@ create table emp(
 
 <img src="../pictures/SQLS12P6.png" alt="实际例子" width="600"/>
 
-#### （5）表操作-修改
+### 3.5 表操作-修改
 **添加字段**: `ALTER TABLE 表名 ADD 字段名 类型（长度） [COMMENT 注释] [约束]`
 
 例子： 在上面的表格`emp`中增加一个新的字段`nickname`（不超过20个字符）。
@@ -174,17 +174,17 @@ alter table emp rename to employee;
 
 <img src="../pictures/SQLS12P8.png" alt="实际例子" width="600"/>
 
-#### （6）表操作-删除
+### 3.6 表操作-删除
 **删除表**： `DROP TABLE[IF EXISTS] 表名`；
 
 **删除指定表，并重新创建该表**：`TRUNCATED TABLE 表名`;
 
 ----------------
-### 4. MySQL图形化界面工具： DataGrip
+## 4. MySQL图形化界面工具： DataGrip
 [DataGrip](https://www.jetbrains.com/datagrip/)
 
 ----------------
-### 5. DML语句（增加，修改以及删除）
+## 5. DML语句（增加，修改以及删除）
 #### （1）添加数据 `INSERT`
 **给指定字段添加数据** 
 ```sql
