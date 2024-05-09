@@ -22,4 +22,4 @@ Chapter 4 Linux实用操作
 - `Ctrl+右键`：向右跳一个单词；
 
 **清空**
-`Ctrl+a`\`clear`：清空屏幕
+`Ctrl+a`/`clear`：清空屏幕
