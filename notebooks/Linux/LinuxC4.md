@@ -47,9 +47,26 @@ yum [-y] install wget
 ```
 如果使用`yum -y install wget`，在安装过程中所有选项都会选择确定；
 
+
+
 ### 2.`apt`命令
 下面拓展一下在`Ubuntu`系统下如何安装文件。在Ubuntu系统下，软件安装包的后缀为`.deb`，我们可以使用`apt`命令进行安装。
 ```
 apt [-y] [install | remove | search] 软件名称
 ```
 `apt`命令同样需要root权限；
+
+
+## Section 4.3 控制软件启动和关闭
+### 1.`systemctl`命令
+Linux系统很多软件（内置或第三方）均支持使用systemctl命令控制：启动，停止，开机自动启动。能够被 管理的软件，一般称之为**服务**。
+```
+systemctl start|stop|status|enable|disable 服务名
+```
+系统内置的服务比较多，比如
+|名称|服务|
+|:---:|:---:|
+|NetworkManager|主网络服务|
+|network|副网络服务|
+|firewalld|防火墙服务|
+|sshd|ssh服务|
