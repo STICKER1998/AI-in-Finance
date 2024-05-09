@@ -150,3 +150,21 @@ chmod 751 1.txt
 ```
 chmod u=rwx,g=rx,o=w 1.txt
 ```
+
+### 3.`chown`命令
+使用`chown`命令可以修改文件，文件夹的所属用户和用户组，普通用户无法修改所属位其用户或组，所以此命令只适用于root用户执行；
+```
+chown [-R] [用户][:][用户组] 文件或文件夹
+```
+- 选项`-R`，同chmod，对文件夹内全部内容应用相同规则；
+- 选项用户，修改所属用户
+- 选项用户组，修改所属用户组
+- `：`用于分隔用户和用户组
+
+**例子**
+|命令|作用|
+|:---:|:---:|
+|`chmod root hello.txt`|将hello.txt所属用户修改为root|
+|`chmod :root hello.txt`|将hello.txt所属用户组修改为root|
+|`chmod root:itheima hello.txt`|将hello.txt所属用户修改为root，所属用户组改为itheima|
+|`chmod -R root test`|将文件夹及其内所有内容的所属用户改为root|
