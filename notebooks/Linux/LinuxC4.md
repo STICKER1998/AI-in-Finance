@@ -92,21 +92,31 @@ date [-d] [+格式化字符串]
 - 格式化字符串；
 
 ### 2.Linux时区
-系统默认为UTC时区，我们可以使用root用户修改时区
+系统默认为UTC时区，我们可以使用root用户修改时区。
 ```
 rm -f /etc/localtime
 sudo ln -s /user/share/zoneinfo/Asia/Shanghai /etc/localtime
 ```
-将系统自带的localtime删除，并将`/user/share/zoneinfo/Asia/Shanghai`软链接上` /etc/localtime`
+首先将系统自带的localtime删除，再将`/user/share/zoneinfo/Asia/Shanghai`软链接上` /etc/localtime`。
 
 ### 3.校准时间
-我们可以通过ntp程序自动校准系统时间；首先下载安装ntp并将其ntpd服务设置为开机自动启动；
+我们可以通过ntp程序自动校准系统时间；首先下载安装ntp软件并将其ntpd服务设置为开机自动启动；
 ```
 yum -y install ntp
 systemctl start ntpd
 systemctl enable ntpd
 ```
-我们也可以手动校准时间
+我们也可以手动校准时间，将ntp连接到一个提供时间校准的服务器。
 ```
 ntpdate -u ntp.aliyun.com
 ```
+
+## Section 4.6 IP地址和主机名
+### 1.IP地址
+每个电脑都有一个地址，用于和其他计算机进行通讯。IP地址主要有两个版本，V4和V6版本。目前主要使用的是IPv4版本`a.b.c.d`；
+
+我们可以通过如下命令查看IP地址：
+```
+ifconfig
+```
+
