@@ -25,8 +25,10 @@ Chapter 4 Linux实用操作
 `Ctrl+a`/`clear`：清空屏幕
 
 ## Section 4.2 软件安装
+### 1.`yum`命令
+在CentOS系统下，软件安装包的后缀为`.rpm`，我们可以使用`yum`命令进行安装。
 ```
-yum [-r] [install | remove | search] 软件名称
+yum [-y] [install | remove | search] 软件名称
 ```
 |选项|功能|
 |:---:|:-:|
@@ -40,12 +42,14 @@ yum [-r] [install | remove | search] 软件名称
 
 **例子**：利用`yum`软件搜索并安装`wget`程序
 ```
-yum [-r] search wget
-yum [-r] install wget
+yum [-y] search wget
+yum [-y] install wget
 ```
 如果使用`yum -y install wget`，在安装过程中所有选项都会选择确定；
 
-
-
-
-
+### 2.`apt`命令
+下面拓展一下在`Ubuntu`系统下如何安装文件。在Ubuntu系统下，软件安装包的后缀为`.deb`，我们可以使用`apt`命令进行安装。
+```
+apt [-y] [install | remove | search] 软件名称
+```
+`apt`命令同样需要root权限；
