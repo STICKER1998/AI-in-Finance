@@ -83,3 +83,30 @@ ln -s 参数1 参数2
 - 参数1，被链接的文件或者文件夹；
 - 参数2，要链接去的目的地；
 
+## Section 4.5 日期与时区
+### 1.date命令
+```
+date [-d] [+格式化字符串]
+```
+- 选项-d，按照给定的字符串显示日期，一般用于日期计算；
+- 格式化字符串；
+
+### 2.Linux时区
+系统默认为UTC时区，我们可以使用root用户修改时区
+```
+rm -f /etc/localtime
+sudo ln -s /user/share/zoneinfo/Asia/Shanghai /etc/localtime
+```
+将系统自带的localtime删除，并将`/user/share/zoneinfo/Asia/Shanghai`软链接上` /etc/localtime`
+
+### 3.校准时间
+我们可以通过ntp程序自动校准系统时间；首先下载安装ntp并将其ntpd服务设置为开机自动启动；
+```
+yum -y install ntp
+systemctl start ntpd
+systemctl enable ntpd
+```
+我们也可以手动校准时间
+```
+ntpdate -u ntp.aliyun.com
+```
