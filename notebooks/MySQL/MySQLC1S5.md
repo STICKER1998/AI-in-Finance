@@ -42,8 +42,8 @@ select 字段列表 from 表1 left [outer] join 表2 on 条件...;
 select 字段列表 from 表1 right [outer] join 表2 on 条件...;
 ```
 
-
 **例子: 使用唯一标识码替换员工ID (leetcode 1378)**
+
 `Employees`表： 在SQL中，`id`是这张表的主键。这张表的每一行分别代表了某公司其中一位员工的名字和ID 。
 | Column Name   | Type    |
 |:---:|:---:|
