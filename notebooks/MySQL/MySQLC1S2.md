@@ -404,11 +404,17 @@ SELECT name FROM customer WHERE referee_id = NULL OR referee_id <> 2;
 
 
 #### 聚合不同值
-我们可以使用关键字`DISTINCT`来聚合包含不同值的行。若不指定则默认使用关键字`ALL`，则对所有的行执行计算。但是不可以使用`COUNT(DISTINCT)`命令；下面给出一个例子：
+我们可以使用关键字`DISTINCT`来聚合包含不同值的行。若不指定则默认使用关键字`ALL`，则对所有的行执行计算。
+
+下面给出一个例子：
 ```sql
 SELECT AVG(DISTINCT prod_price) FROM products;
 ```
 这计算了products表中产品价格prod_price不同的所有产品的产品价格prod_price平均值。如果不加`DISTINCT`关键字，则计算所有产品的产品价格平均值，无论是否重复或者相同。
+
+> [!WARNING]
+> - 在`COUNT`函数中若指定字段名，则可以使用`DISTINCT`关键字，比如`SELECT COUNT(DISTINCT prod_price) FROM products;`
+> - 在不指定字段名时不可以使用`COUNT(DISTINCT)`命令；
 
 ### 6.4 分组查询(`GROUP BY`)
 
