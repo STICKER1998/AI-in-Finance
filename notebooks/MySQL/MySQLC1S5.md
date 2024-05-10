@@ -80,6 +80,15 @@ select 字段列表 from 表1 [inner] join 表2 on 连接条件...;
 | Nokia        | 2009  | 5000  |
 | Apple        | 2011  | 9000  |
 
+**解答**
+```sql
+SELECT
+Product.product_name, Sales.year, Sales.price
+FROM
+Product INNER JOIN Sales
+ON
+Product.product_id = Sales.product_id;
+```
 
 ### 4.外连接
 **左外连接**：查询表1（左表）的所有数据，包含表1和表2交集部分的数据
