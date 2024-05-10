@@ -56,7 +56,6 @@ USE 数据库名;
       字段3 字段类型[COMMENT 字段3注释]
    )[COMMENT 标注释]
   ```
- <img src="/pictures/MySQL/SQLS12P5.png" alt="例子" width="600"/>
 
 ### 3.4 表操作-数据类型
 #### 3.4.1 数值类型 
@@ -395,15 +394,17 @@ SELECT name FROM customer WHERE referee_id = NULL OR referee_id <> 2;
 
 
 > [!WARNING]
-> **忽略NULL**： 与前面介绍的各类SQL语句情况一样，`AVG()/MAX()/MIN()/SUM()`忽略列值为`NULL`的行；
+> - **忽略NULL**： 与前面介绍的各类SQL语句情况一样，`AVG()/MAX()/MIN()/SUM()`忽略列值为`NULL`的行；
 > 
-> **COUNT()函数两种形式**
+> - **COUNT()函数两种形式**
 >    - `COUNT(*)`对表中行的数目进行计数，不管表列中包含的是空值还是非空值；
 >    - `COUNT(column)`对特定列中具有值的行进行计数，忽略`NULL`的行；
 > 
-> **MAX()/MIN()函数可以作用于字符串数据**;
->
-> **聚合不同值**：我们可以使用关键字`DISTINCT`来聚合包含不同值的行。若不指定则默认使用关键字`ALL`，则对所有的行执行计算。但是不可以使用`COUNT(DISTINCT)`命令；下面给出一个例子：
+> - **MAX()/MIN()函数可以作用于字符串数据**;
+
+
+#### 聚合不同值
+我们可以使用关键字`DISTINCT`来聚合包含不同值的行。若不指定则默认使用关键字`ALL`，则对所有的行执行计算。但是不可以使用`COUNT(DISTINCT)`命令；下面给出一个例子：
 ```sql
 SELECT AVG(DISTINCT prod_price) FROM products;
 ```
