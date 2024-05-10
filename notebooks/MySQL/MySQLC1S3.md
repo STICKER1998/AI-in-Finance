@@ -24,7 +24,7 @@ MySQL提供了很多字符串函数，常用的如下：
 |`locate(str1,str2)`|返回字符串str2中子字符串str1第一次出现的位置；|
 
 
-|name|length|upper|lower|right(name,2)|substring(name,1,2)|left(name,2)|locate('av',name)|
+|name|length(name)|upper(name)|lower(name)|right(name,2)|substring(name,1,2)|left(name,2)|locate('av',name)|
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 |Java|4|JAVA|java|va|Ja|Ja|2|
 |Python|6|PYTHON|python|on|Py|Py|0|
