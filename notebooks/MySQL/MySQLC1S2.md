@@ -262,7 +262,7 @@ delete from employee;
 
 注意：使用`UPDATE`和`DELETE`语句时，将对所有数据进行修改和删除，这是一个非常危险的操作。
 
-------------------------------------------------------------------------------------------
+*********************************************************************
 ## 6.DQL语句
 ### 6.1 基本检索语句
 #### 检索多个（一个）字段
@@ -375,7 +375,6 @@ SELECT name FROM Customer WHERE referee_id NOT IN (2) OR referee_id IS NULL;
 SELECT name FROM customer WHERE referee_id = NULL OR referee_id <> 2;
 ```
 
-
 ### 6.3 聚合函数
 我们经常需要汇总数据而不需要把他们实际检索出来，为此SQL提供了专门的函数。**聚合函数**是指运行在行组上，计算和返回单个值的函数，其常见的例子有以下作用
 - 确定表中行数；
@@ -417,10 +416,19 @@ SELECT AVG(DISTINCT prod_price) FROM products;
 > - 在不指定字段名时不可以使用`COUNT(DISTINCT)`命令；
 
 ### 6.4 分组查询(`GROUP BY`)
-
+在SQL中分组允许把数据分为多个逻辑组，以便能对每个组进行聚合计算，使用`GROUP BY`子句进行分组的语法如下：
 ```sql
-select 字段列表 from 表名[where 条件] group by 分组字段名 [having 分组后过滤条件]
+SELECT 字段列表 FROM 表名[WHERE 条件] GROUP BY 分组字段名 [HAVING 分组后过滤条件]
 ```
+
+> [!NOTE]
+> **使用`GROUP BY` 分组的重要规定**
+> - GROUP BY 子句可以包含任意数目的列，这使得对分组进行嵌套，为数据分组提供更细致的控制；
+> - 如果在GROUP BY 子句中嵌套了分组，数据将在最后规定的分组上进行汇总；
+> - GROUP BY 子句中列出的每个列都必须是检索列或有效表达式（但不可以是聚集函数）；
+> - 如果在SELECT中使用表达式，则必须在GROUP BY子句中指定相同的表达式，不可以用别名；
+> - 如果分组列中具有NULL值，则NULL将会作为一个分组返回。如果列中有多行NULL值，则将它们分为一组；
+> - GROUP BY 子句必须要在WHERE子句之后，在ORDER BY子句之前；
 
 1.where 与 having区别
    
