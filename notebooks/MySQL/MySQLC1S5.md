@@ -81,6 +81,7 @@ SELECT 字段列表 FROM 表1 WHERE 字段1 操作符 (SELECT 字段2 FROM 表2 
 |customers/orders|cust_id|顾客id|
 |orders/orderitems|order_num|订单号|
 |orderitems|prod_id|产品id|
+
 请给出够买产品id为`TNT2`的顾客名字和联系方式。
 
 ```sql
@@ -93,9 +94,7 @@ WHERE cust_id IN (SELECT cust_id
                                       WHERE prod_id = 'TNT2'));
 ```
 
-
-
-#### 7.2 分类
+#### 7.2 子查询分类
 根据子查询返回的结果不同我们可以将其分为：
 - **标量子查询**：子查询返回的结果是单个值（数字，字符串，日期等等），最简单的形式，这种子查询称为标量子查询。
 - **列子查询**：子查询返回的结果是一列，常见操作有：in，not in，any，some，all；
