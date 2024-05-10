@@ -24,27 +24,22 @@ SHOW DATABASES;
 ```
 SHOW DATABASE();
 ```
-
-<img src="/pictures/MySQL/SQLS12P1.png" alt="数据库查询" width="600"/>
     
 #### 3.1.2 创建数据库
 ```
 CREATE DATABASE [IF NOT EXISTS] 数据库名 [DEFAULT CHARSET 字符集名] [COLLATE 排序规则];
 ```
 上面的语句中所有的方括号中的内容都是可选的， 第一个括号中的`[IF NOT EXISTS]`如果没有并且你创建的Database已经存在则会报错。
-<img src="/pictures/MySQL/SQLS12P2.png" alt="数据库创建" width="600"/>
     
 #### 3.1.3 删除数据库
 ```
 DROP DATABASE [IF EXISTS] 数据库名;
 ```
-<img src="/pictures/MySQL/SQLS12P3.png" alt="数据库删除" width="600"/>
 
 #### 3.1.4 使用数据库
 ```
 USE 数据库名;
 ```
-<img src="/pictures/MySQL/SQLS12P4.png" alt="数据库使用以及查询在哪个数据库" width="600"/>
 
 ### 3.2 表操作-查询
 - **查询当前数据库所有表**：`SHOW TABLES;`
@@ -302,7 +297,7 @@ SELECT DISTINCT 字段列表 FROM 表名;
 > ```
 > 只有字段1和字段2均相同的行才不会重复出现在检索结果里；
 
-### 6.2 条件查询（WHERE)
+### 6.2 条件查询(`WHERE`)
 #### `WHERE`子句
 数据库表中一般包含大量的数据，我们很少需要检索所有的行，通常只需要根据**过滤条件**来提取表的子集，其语法如下：
 ```sql
@@ -383,18 +378,38 @@ SELECT name FROM customer WHERE referee_id = NULL OR referee_id <> 2;
 
 
 ### 6.3 聚合函数
+我们经常需要汇总数据而不需要把他们实际检索出来，为此SQL提供了专门的函数。**聚合函数**是指运行在行组上，计算和返回单个值的函数，其常见的例子有以下作用
+- 确定表中行数；
+- 获得表中行组的和；
+- 找出表列的最大值，最小值和平均值；
 
-1.将一列数据作为整体，进行纵向计算
+#### 常见聚合函数
 
-2.常见聚合函数
+|聚合函数|作用|
+|:---:|:---:|
+|AVG()|返回某列平均值|
+|COUNT()|返回某列的行数|
+|MAX()|返回某列的最大值|
+|MIN()|返回某列的最小值|
+|SUM()|返回某列的和|
 
+
+> [!WARNING]
+> **忽略NULL**： 与前面介绍的各类SQL语句情况一样，`AVG()/MAX()/MIN()/SUM()`忽略列值为`NULL`的行；
+> 
+> **COUNT()函数两种形式**
+>    - `COUNT(*)`对表中行的数目进行计数，不管表列中包含的是空值还是非空值；
+>    - `COUNT(column)`对特定列中具有值的行进行计数，忽略`NULL`的行；
+> 
+> **MAX()/MIN()函数可以作用于字符串数据**;
+>
+> **聚合不同值**：我们可以使用关键字`DISTINCT`来聚合包含不同值的行。若不指定则默认使用关键字`ALL`，则对所有的行执行计算。但是不可以使用`COUNT(DISTINCT)`命令；下面给出一个例子：
 ```sql
-count max min avg sum
+SELECT AVG(DISTINCT prod_price) FROM products;
 ```
+这计算了products表中产品价格prod_price不同的所有产品的产品价格prod_price平均值。如果不加`DISTINCT`关键字，则计算所有产品的产品价格平均值，无论是否重复或者相同。
 
-3.null值不参与计算
-
-### 6.4 分组查询
+### 6.4 分组查询(`GROUP BY`)
 
 ```sql
 select 字段列表 from 表名[where 条件] group by 分组字段名 [having 分组后过滤条件]
@@ -412,7 +427,7 @@ select 字段列表 from 表名[where 条件] group by 分组字段名 [having �
    分组之后，查询的字段一般为聚合函数和分组字段，查询其他字段无意义；
 
 
-### 6.5 排序检索
+### 6.5 排序检索(`ORDER BY`)
 通过SELECT语句检索出来的结果中，检索结果的顺序并没有意义。虽然数据一般以它在底层表中的顺序出现，但是如果数据后来进行过更新或删除，则此顺序将会受到MySQL重用回收存储空间的影响。**在关系数据库中，如果不明确规定排序顺序，则不应该假定检索出的数据的顺序有意义。** 排序检索数据的语法如下所示
 ```sql
 SELECT 字段列表 FROM 表名 ORDER BY 字段1 排序方向1, 字段2 排序方向2;
@@ -421,7 +436,7 @@ SELECT 字段列表 FROM 表名 ORDER BY 字段1 排序方向1, 字段2 排序�
 - `ASC`是升序关键字，如果不指定排序方向，那么将默认升序；
 - `DESC`是降序关键字，如果想要在多个字段上进行降序排序，则需要对每个字段均指定`DESC`关键字；
 
-### 6.6 分页检索（限制结果）
+### 6.6 分页检索(`LIMIT`)
 SELECT语句返回所有匹配的行，如果想要返回第一行或者某几行我们可以通过`LIMIT`关键字来进行控制：
 ```sql 
 SELECT 字段列表 FROM 表名 LIMIT 起始索引,查询记录数;
