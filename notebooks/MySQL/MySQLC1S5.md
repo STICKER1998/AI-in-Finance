@@ -63,18 +63,35 @@ select 字段列表 from 表B...
 注意：这里union all会直接合并所有查询结果，union会删除重复项。
 
 ### 7.子查询
-**概念**：SQL语句中嵌套select语句，称为嵌套查询，又称为子查询。
+#### 7.1 概念
+SQL语句中嵌套使用`SELECT`语句被称为嵌套查询，又称为**子查询**，其语法如下
 ```sql
-select * from t1 where column1 = (Select column1 from t2);
+SELECT 字段列表 FROM 表1 WHERE 字段1 操作符 (SELECT 字段2 FROM 表2 WHERE...);
 ```
-**分类**
-- 根据子查询结果不同我们可以将其又分为：
-   - **标量子查询**：子查询返回的结果是单个值（数字，字符串，日期等等），最简单的形式，这种子查询称为标量子查询。
-   - **列子查询**：子查询返回的结果是一列，常见操作有：in，not in，any，some，all；
-        | 操作符 | 描述 |
-        | :---:  | :---: |
+> [!WARNING]
+> **列必须匹配**
+> 在WHERE子句中使用子查询，应该保证**嵌套语句中的SELECT语句具有与WHERE子句中相同数目的列**。
+> 通常子查询将会返回单个列并且与单个列匹配，但如果需要也可以使用多个列。
 
-   - **行子查询**：子查询返回的结果是一行（可以是多列）， 常见操作有：=，！=，in，not in；
-   - **表子查询**：子查询返回的结果是多行多列，常见操作为in；
-- 根据子查询位置可以将其分为：**where之后，from之后，select之后**。
+**例子** 有三张表`customers`,`orders`以及`orderitems`表
+```sql
+SELECT cust_name, cust_contact
+FROM customers
+WHERE cust_id IN (SELECT cust_id
+                  FROM orders
+                  WHERE order_num IN (SELECT order_num
+                                      FROM orderitems
+                                      WHERE prod_id = 'TNT2'));
+```
+
+
+
+#### 7.2 分类
+根据子查询返回的结果不同我们可以将其分为：
+- **标量子查询**：子查询返回的结果是单个值（数字，字符串，日期等等），最简单的形式，这种子查询称为标量子查询。
+- **列子查询**：子查询返回的结果是一列，常见操作有：in，not in，any，some，all；
+- **行子查询**：子查询返回的结果是一行（可以是多列）， 常见操作有：=，！=，in，not in；
+- **表子查询**：子查询返回的结果是多行多列，常见操作为in；
+
+根据子查询位置可以将其分为：**where之后，from之后，select之后**。
 
