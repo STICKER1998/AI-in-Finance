@@ -43,7 +43,7 @@ MySQL提供了很多文本函数用于处理字符串数据，最常用的一些
 |`sin/cos/tan(x)`|返回对应的三角函数值；|
 |`pi()`|返回圆周率值；|
 
-给出一些例子
+下面给出了一些数值函数的例子
 ```sql
 SELECT PI();
 ```
@@ -64,8 +64,20 @@ SELECT SQRT(4);
 |`curtime()`|返回当前时间；|
 |`now()`：返回当前日期和时间；|
 |`year(date)/month(date)/day(date)`|获取指定date的年/月/；|
-|`date_add(date, interval expr type)`|返回一个日期/时间值加上一个时间间隔expr后的时间值；|
+|`date_add(date, INTERVAL 数量 单位(DAY,MONTH,...))`|返回一个日期/时间值加上一个时间间隔expr后的时间值；|
 |`datediff(date1, date2)`|返回起始时间date1和结束时间date2之间的天数，间隔天数 = data1-data2；|
+
+下面给出了一些日期函数的例子
+```sql
+SELECT DATEDIFF('2022-12-31', '2020-07-31');
+```
+其返回是`883`
+```sql
+SELECT DATE_ADD('2020-07-31', INTERVAL 883 DAY);
+```
+其返回是'2022-12-31'
+
+
 
 ### 4.流程函数
 ```sql
