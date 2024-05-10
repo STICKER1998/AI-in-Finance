@@ -71,7 +71,7 @@ select 字段列表 from 表1 right [outer] join 表2 on 条件...;
 | 11 | Meir     |
 | 90 | Winston  |
 | 3  | Jonathan |
-+----+----------+
+
 `EmployeeUNI`表:
 
 | id | unique_id |
