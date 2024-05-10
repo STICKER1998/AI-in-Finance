@@ -382,7 +382,6 @@ SELECT name FROM customer WHERE referee_id = NULL OR referee_id <> 2;
 ```
 
 
-
 ### 6.3 聚合函数
 
 1.将一列数据作为整体，进行纵向计算
@@ -436,12 +435,12 @@ SELECT 字段列表 FROM 表名 LIMIT 起始索引,查询记录数;
 ### 6.7 DQL语句执行顺序
 #### DQL语句的编写顺序
 ```sql
-select 字段列表 from 表名列表 where 条件列表 group by 分组字段列表 having 分组后条件列表 order by 排序字段列表 limit 分页参数
+SELECT 字段列表 FROM 表名列表 WHERE 条件列表 GROUP BY 分组字段列表 HAVING 分组后条件列表 ORDER BY 排序字段列表 LIMIT 分页参数;
 ```
 #### DQL语句的执行顺序
-执行顺序和编写顺序不同，首先执行`from`，接着执行`where`以及`group by`，再执行`select`， 最后执行`order by`和`limit`。 
+执行顺序和编写顺序不同，首先执行`FROM`，接着执行`WHERE`以及`GROUP BY`，再执行`SELECT`， 最后执行`ORDER BY`和`LIMIT`。 
 ```sql
-from -> where -> group by -> having -> select ->limit
+FROM -> WHERE -> FROUP BY -> HAVING -> SELECT ->LIMIT
 ```
 
 
