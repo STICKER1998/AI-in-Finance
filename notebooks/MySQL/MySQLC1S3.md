@@ -10,14 +10,18 @@
 > **函数没有SQL的可移植性强**
 > 能在多个系统上运行的代码称为可移植的（portable），相对来说多数SQL语句是可移植的，而函数的可移植性没有那么强。
 
-### 1.字符串函数
+### 1.文本函数
 MySQL提供了很多字符串函数，常用的如下：
+|文本函数|作用|
+|:---:|:---:|
+|`concat(s1,s2,...sn)`| 字符串拼接函数，将s1,s2,...sn拼接成一个字符串|
+|`lower(str)/upper(str)`|将字符串str全部转换成小写/大写|
+|`lpad(str,n,pad)/rpad(str,n,pad)`|左/右填充，用字符串pad对str的左边/右边进行填充，达到n个字符串的长度；|
+|`trim/ltrim/rtrim(str)`:去掉字符串头部和尾部/头部/尾部的空格；|
+|`length(str)`|返回字符串str的长度；|
+|`left/right(str,n)`|输出字符串str从左边/右边开始的长度为n的子串；|
+|`substring(str,start,len)`|返回字符串str从start位置起的len个长度的字符串；|
 
-- `concat(s1,s2,...sn)`: 字符串拼接函数，将s1,s2,...sn拼接成一个字符串
-- `lower(str)/upper(str)`：将字符串str全部转换成小写/大写
-- `lpad(str,n,pad)/rpad(str,n,pad)`:左/右填充，用字符串pad对str的左边/右边进行填充，达到n个字符串的长度
-- `trim(str)`:去掉字符串头部和尾部的空格
-- `substring(str,start,len)`:返回字符串str从start位置起的len个长度的字符串
 
 ### 2.数值函数
 - `ceil(x)\floor(x)`: 向上\向下取整；
