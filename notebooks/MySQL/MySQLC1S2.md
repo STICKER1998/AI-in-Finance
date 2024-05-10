@@ -374,7 +374,13 @@ SELECT name FROM Customer WHERE referee_id NOT IN (2) OR referee_id IS NULL;
 ```
 
 > [!NOTE] 
-> 本题最大的坑在于NULL与不匹配的问题。
+> 本题最大的坑在于NULL与不匹配的问题。MySQL使用三值逻辑: TRUE, FALSE和UNKNOWN。任何与`NULL`值进行的比较都会与第三种值UNKNOWN做比较。这个“任何值”包括 NULL本身！这就是为什么 MySQL 提供`IS NULL`和`IS NOT NULL`两种操作来对`NULL`特殊判断。因此，在`WHERE`语句中我们需要做一个额外的条件判断`referee_id IS NULL`。
+> 
+> 下面的答案同样是错的
+```sql
+SELECT name FROM customer WHERE referee_id = NULL OR referee_id <> 2;
+```
+
 
 
 ### 6.3 聚合函数
