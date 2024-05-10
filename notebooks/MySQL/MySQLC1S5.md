@@ -73,7 +73,16 @@ SELECT 字段列表 FROM 表1 WHERE 字段1 操作符 (SELECT 字段2 FROM 表2 
 > 在WHERE子句中使用子查询，应该保证**嵌套语句中的SELECT语句具有与WHERE子句中相同数目的列**。
 > 通常子查询将会返回单个列并且与单个列匹配，但如果需要也可以使用多个列。
 
-**例子** 有三张表`customers`,`orders`以及`orderitems`表
+**例子** 给出`customers`,`orders`以及`orderitems`三张表，并给出部分字段名描述
+|表名|列名|表述|
+|:---:|:---:|:---:|
+|customers|cust_name|顾客名|
+|customers|cust_contact|顾客联系方式|
+|customers/orders|cust_id|顾客id|
+|orders/orderitems|order_num|订单号|
+|orderitems|prod_id|产品id|
+请给出够买产品id为`TNT2`的顾客名字和联系方式。
+
 ```sql
 SELECT cust_name, cust_contact
 FROM customers
