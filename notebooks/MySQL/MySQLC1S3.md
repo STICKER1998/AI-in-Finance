@@ -23,6 +23,7 @@ MySQL提供了很多字符串函数，常用的如下：
 |`substring(str,start,len)`|返回字符串str从start位置起的len个长度的字符串，这里strat从1开始；|
 |`locate(str1,str2)`|返回字符串str2中子字符串str1第一次出现的位置；|
 
+下面给出一个文本函数的例子
 
 |name|length(name)|upper(name)|lower(name)|right(name,2)|substring(name,1,2)|left(name,2)|locate('av',name)|
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
@@ -31,10 +32,15 @@ MySQL提供了很多字符串函数，常用的如下：
 
 
 ### 2.数值函数
-- `ceil(x)\floor(x)`: 向上\向下取整；
-- `mod(x,y)`：返回x/y的模；
-- `rand()`：生成(0,1)之间的随机数
-- `round(x)`：四舍五入；
+|数值函数|作用|
+|:---:|:---:|
+|`ceil(x)\floor(x)`| 向上\向下取整；|
+|`mod(x,y)`|返回x/y的模；|
+|`rand()`|生成(0,1)之间的随机数；|
+|`round(x)`|返回x的四舍五入取整；|
+|`sqrt(x)`|返回x的算数平方根；|
+|`sin/cos/tan(x)`|返回对应的三角函数值；|
+|`pi()`|返回圆周率值；|
 
 ### 3.日期函数
 - `curdate()`：返回当前日期;
