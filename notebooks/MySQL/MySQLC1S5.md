@@ -161,6 +161,18 @@ ON
     Employees.id = EmployeeUNI.id;
 ```
 
+
+```sql
+SELECT 
+name, bonus
+FROM
+Employee LEFT JOIN Bonus
+ON 
+Employee.empId = Bonus.empId
+HAVING 
+(bonus <1000 OR bonus IS NULL);
+```
+
 ### 5.自连接
 **自连接查询语法**
 ```sql
