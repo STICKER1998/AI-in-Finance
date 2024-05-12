@@ -102,7 +102,7 @@ SELECT SQRT(4);
 **解答**
 
 ```sql
-SELECT a1.machine_id, round(AVG(a1.timestamp - a2.timestamp), 3) as processing_time 
+SELECT a1.machine_id, ROUND(AVG(a1.timestamp - a2.timestamp), 3) as processing_time 
 FROM Activity as a1, Activity as a2
 WHERE a1.activity_type = 'end' 
 AND a2.activity_type = 'start'
