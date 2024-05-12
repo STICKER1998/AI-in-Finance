@@ -79,6 +79,7 @@ SELECT DATE_ADD('2020-07-31', INTERVAL 883 DAY);
 
 
 **例子：上升的温度（leetcode 197）**
+
 `Weather`表：`id`是该表具有唯一值的列，没有具有相同`recordDate`的不同行，该表包含特定日期的温度信息。
 
 | Column Name   | Type    |
