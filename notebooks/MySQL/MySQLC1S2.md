@@ -122,7 +122,6 @@ create table emp(
 ) comment '员工信息表';
 ```
 
-<img src="../pictures/SQLS12P6.png" alt="实际例子" width="600"/>
 
 ### 3.5 表操作-修改
 **添加字段**: `ALTER TABLE 表名 ADD 字段名 类型（长度） [COMMENT 注释] [约束]`
