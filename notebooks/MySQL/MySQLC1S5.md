@@ -162,18 +162,8 @@ ON
 ```
 
 
-```sql
-SELECT 
-name, bonus
-FROM
-Employee LEFT JOIN Bonus
-ON 
-Employee.empId = Bonus.empId
-HAVING 
-(bonus <1000 OR bonus IS NULL);
-```
-
 下面给一个干烧CPU的例子：
+
 **例子：确认率(leetcode 1934)**
 `Signups`表：User_id是该表的主键，每一行都包含ID为user_id的用户的注册时间信息。
 | Column Name    | Type     |
