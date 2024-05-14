@@ -173,6 +173,95 @@ HAVING
 (bonus <1000 OR bonus IS NULL);
 ```
 
+下面给一个干烧CPU的例子：
+**例子：确认率(leetcode 1934)**
+`Signups`表：User_id是该表的主键，每一行都包含ID为user_id的用户的注册时间信息。
+| Column Name    | Type     |
+|:---:|:---:|
+| user_id        | int      |
+| time_stamp     | datetime |
+
+`Confirmations`表：(user_id, time_stamp)是该表的主键，user_id是一个引用到注册表的外键，action是类型为('confirmed'， 'timeout')的ENUM， 该表的每一行都表示ID为user_id的用户在time_stamp请求了一条确认消息，该确认消息要么被确认('confirmed')，要么被过期('timeout')。
+
+| Column Name    | Type     |
+|:---:|:---:|
+| user_id        | int      |
+| time_stamp     | datetime |
+| action         | ENUM     |
+
+用户的确认率是`confirmed`消息的数量除以请求的确认消息的总数。没有请求任何确认消息的用户的确认率为0。确认率四舍五入到小数点后两位。编写一个SQL查询来查找每个用户的确认率。
+
+**输入**
+`Signups`表:
+| user_id | time_stamp          |
+|:---:|:---:|
+| 3       | 2020-03-21 10:16:13 |
+| 7       | 2020-01-04 13:57:59 |
+| 2       | 2020-07-29 23:09:44 |
+| 6       | 2020-12-09 10:39:37 |
+
+`Confirmations`表:
+
+| user_id | time_stamp          | action    |
+|:---:|:---:|:---:|
+| 3       | 2021-01-06 03:30:46 | timeout   |
+| 3       | 2021-07-14 14:00:00 | timeout   |
+| 7       | 2021-06-12 11:57:29 | confirmed |
+| 7       | 2021-06-13 12:58:28 | confirmed |
+| 7       | 2021-06-14 13:59:27 | confirmed |
+| 2       | 2021-01-22 00:00:00 | confirmed |
+| 2       | 2021-02-28 23:59:59 | timeout   |
+
+**输出**
+
+| user_id | confirmation_rate |
+|:---:|:---:|
+| 6       | 0.00              |
+| 3       | 0.00              |
+| 7       | 1.00              |
+| 2       | 0.50              |
+
+**解释**
+- 用户6没有请求任何确认消息。确认率为0。
+- 用户3进行了2次请求，都超时了。确认率为0。
+- 用户7提出了3个请求，所有请求都得到了确认。确认率为1。
+- 用户2做了2个请求，其中一个被确认，另一个超时。确认率为1/2=0.5。
+
+**解答1**
+```sql
+SELECT t.user_id, ROUND(AVG(t.action),2) as confirmation_rate
+FROM 
+    (SELECT Signups.user_id,
+    case
+    when action = 'timeout' then 0
+    when action = 'confirmed' then 1
+    when action IS NULL then 0
+    END as action
+    FROM
+    Signups LEFT JOIN Confirmations
+    ON
+    Signups.user_id = Confirmations.user_id) as t
+GROUP BY 
+t.user_id
+```
+
+**解答2**
+```sql
+SELECT
+    s.user_id,
+    ROUND(IFNULL(AVG(c.action='confirmed'), 0), 2) AS confirmation_rate
+FROM
+    Signups AS s
+LEFT JOIN
+    Confirmations AS c
+ON
+    s.user_id = c.user_id
+GROUP BY
+    s.user_id
+```
+
+`AVG(c.action='confirmed')`把CPU都烧了。
+
 ### 5.自连接
 **自连接查询语法**
 ```sql
