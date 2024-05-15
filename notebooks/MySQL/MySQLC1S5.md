@@ -264,6 +264,7 @@ select 字段列表 from 表A 别名A join 表A 别名B on 条件...;
 
 自连接时要给表其两个别名。
 
+
 ### 6.联合查询
 对于union 查询，就是要把多次查询的结果合并起来，形成一个新的查询结果集；
 
@@ -305,6 +306,58 @@ WHERE cust_id IN (SELECT cust_id
                   WHERE order_num IN (SELECT order_num
                                       FROM orderitems
                                       WHERE prod_id = 'TNT2'));
+```
+
+**例子：即时食物配送(leetcode 1174)**
+配送表`Delivery`: delivery_id 是该表中具有唯一值的列。该表保存着顾客的食物配送信息，顾客在某个日期下了订单，并指定了一个期望的配送日期（和下单日期相同或者在那之后）。
+
+| Column Name                 | Type    |
+|:---:|:---:|
+| delivery_id                 | int     |
+| customer_id                 | int     |
+| order_date                  | date    |
+| customer_pref_delivery_date | date    |
+
+如果顾客期望的配送日期和下单日期相同，则该订单称为`即时订单`，否则称为`计划订单`。`首次订单`是顾客最早创建的订单。我们保证一个顾客只会有一个`首次订单`。
+编写解决方案以获取即时订单在所有用户的首次订单中的比例，保留两位小数。
+
+**输入**
+
+`Delivery`表
+
+| delivery_id | customer_id | order_date | customer_pref_delivery_date |
+|:---:|:---:|:---:|:---:|
+| 1           | 1           | 2019-08-01 | 2019-08-02                  |
+| 2           | 2           | 2019-08-02 | 2019-08-02                  |
+| 3           | 1           | 2019-08-11 | 2019-08-12                  |
+| 4           | 3           | 2019-08-24 | 2019-08-24                  |
+| 5           | 3           | 2019-08-21 | 2019-08-22                  |
+| 6           | 2           | 2019-08-11 | 2019-08-13                  |
+| 7           | 4           | 2019-08-09 | 2019-08-09                  |
+
+**输出**
+
+| immediate_percentage |
+|:---:|
+| 50.00                |
+
+**解释**
+- 1 号顾客的 1 号订单是首次订单，并且是计划订单。
+- 2 号顾客的 2 号订单是首次订单，并且是即时订单。
+- 3 号顾客的 5 号订单是首次订单，并且是计划订单。
+- 4 号顾客的 7 号订单是首次订单，并且是即时订单。
+- 因此，一半顾客的首次订单是即时的。
+
+**解答**
+```sql
+SELECT ROUND(AVG(IF(order_date=customer_pref_delivery_date,1,0)*100),2) as immediate_percentage
+FROM 
+Delivery
+WHERE (customer_id, order_date) in (
+    select customer_id, min(order_date)
+    FROM Delivery
+    group by customer_id
+)
 ```
 
 #### 7.2 子查询分类
