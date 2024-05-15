@@ -309,6 +309,7 @@ WHERE cust_id IN (SELECT cust_id
 ```
 
 **例子：即时食物配送(leetcode 1174)**
+
 配送表`Delivery`: delivery_id 是该表中具有唯一值的列。该表保存着顾客的食物配送信息，顾客在某个日期下了订单，并指定了一个期望的配送日期（和下单日期相同或者在那之后）。
 
 | Column Name                 | Type    |
