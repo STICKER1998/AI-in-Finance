@@ -160,16 +160,19 @@ WHERE w1.temperature > (SELECT w2.temperature
 
 
 ### 4.流程函数
+#### `if`语句
 ```sql
 if(value, t, f)
 ```
 如果value的值为true，则返回值t，否则返回值f；
 
+#### `ifnull`语句
 ```sql
 ifnull(value1, value2)
 ```
 如果value1不是null，则返回value1，否则返回value2；
- 
+
+#### `case when`语句
 ```sql
 case when [con1] then [result1] [con2] then [result2] ...  else [default] end
 ```
@@ -179,4 +182,70 @@ case when [con1] then [result1] [con2] then [result2] ...  else [default] end
 case [expr] when [value1] then [result1] when [value2] then [result2]... else [default] end
 ```
 如果expr等于值1，则返回结果1，...，否则返回default；
+
+#### `coalesce`语句
+```sql
+COALESCE(expr1, expr2, ...,exprn)
+```
+`COALESCE(expr1, expr2, ...,exprn)`依次参考各参数表达式，遇到非null值即停止并返回该值。如果所有的表达式都是空值，最终将返回一个空值。使用COALESCE在于大部分包含空值的表达式最终将返回空值。
+
+**例子：换座位(leetcode 626)**
+
+表`Seat`：id 是该表的主键（唯一值）列，是一个连续的增量，该表的每一行都表示学生的姓名和ID。
+
+| Column Name | Type    |
+|:---:|:---:|
+| id          | int     |
+| student     | varchar |
+
+编写解决方案来交换每两个连续的学生的座位号。如果学生的数量是奇数，则最后一个学生的id不交换。按id升序返回结果表。
+
+**输入**
+
+`Seat`表
+
+| id | student |
+|:---:|:---:|
+| 1  | Abbot   |
+| 2  | Doris   |
+| 3  | Emerson |
+| 4  | Green   |
+| 5  | Jeames  |
+
+**输出** 
+
+| id | student |
+|:---:|:---:|
+| 1  | Doris   |
+| 2  | Abbot   |
+| 3  | Green   |
+| 4  | Emerson |
+| 5  | Jeames  |
+
+**解答**
+```sql
+SELECT
+    s1.id, COALESCE(s2.student, s1.student) as student
+FROM
+    Seat s1 LEFT JOIN 
+    Seat s2
+ON
+    s2.id = s1.id + POWER(-1, (s1.id+1)) 
+```sql
+
+也可以使用`case when`语句来代替
+
+```sql
+SELECT 
+    CASE 
+    WHEN mod(s.id,2) = 0 THEN s.id-1
+    WHEN mod(s.id,2) = 1 AND s.id<>(SELECT count(*) FROM Seat) THEN s.id+1
+    ELSE s.id
+    end as id,
+    s.student
+FROM
+    Seat s
+ORDER BY
+    id
+```
 
