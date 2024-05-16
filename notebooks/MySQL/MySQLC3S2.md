@@ -36,15 +36,28 @@ select *, sum(score) over (partition by cid) as "班级总分" FROM sql_5;
 select cid, sum(score) as "班级总分" FROM sql_5 GROUP BY cid;
 ```
 
-### 窗口子句
+### 排序子句（`ORDER BY`)
+其使用方式和一般的排序检索一致，如果不要排序可以不写或者`ORDER BY NULL`。
 
-`ROWS BETWEEN unbounded preceding AND current row`：从当前分区的起始行到当前行
-`ROWS BETWEEN 2 preceding AND current row`：从前面2行到当前行
-`ROWS BETWEEN current row AND unbounded following`：从当前行到当前分区的最后一行
-`ROWS BETWEEN current row AND 1 following`：从当前行到下一行
+### 窗口子句 (`ROWS`)
+窗口子句的描述：`ROWS BETWEEN <起始行> AND <终止行>`
+- 起始行：N preceding/ unbounded preceding
+- 当前行：current row
+- 终止行：N following/unbounded following
+
+**例子**
+
+- `ROWS BETWEEN unbounded preceding AND current row`：从当前分区的起始行到当前行
+- `ROWS BETWEEN 2 preceding AND current row`：从前面2行到当前行
+- `ROWS BETWEEN current row AND unbounded following`：从当前行到当前分区的最后一行
+- `ROWS BETWEEN current row AND 1 following`：从当前行到下一行
 
 > [!NOTE]
-> - 如果不使用`ORDER BY`和`ROWS`，则默认使用`ROWS BETWEEN unbounded preceding AND unbounded following`;
-> - 如果只使用`ORDER BY`，但不使用`ROWS`，则默认使用`ROWS BETWEEN unbounded preceding AND current row`;
+> - 如果不使用排序子句`ORDER BY`和窗口子句`ROWS`，则默认使用`ROWS BETWEEN unbounded preceding AND unbounded following`;
+> - 如果只使用排序子句`ORDER BY`，但不使用窗口子句`ROWS`，则默认使用`ROWS BETWEEN unbounded preceding AND current row`;
 
 
+### 总体流程
+- 通过`PARTITION BY`和`ORDER BY`子句确定大窗口；（即每个分区的起始处unbounded preceding和终止处unbounded following）
+- 通过`ROWS`子句针对每一行数据确定小窗口；
+- 对每行的小窗口内的数据执行行数并生成新的列；
