@@ -1,6 +1,7 @@
 Chapter 3 经典问题
 =============
 ## Section 3.1 行列转换问题
+### 例子1：成绩汇总表I
 我们考虑如下一个问题，将如图所示的表1转换成表2
 
 | name | subject |  score |
@@ -94,5 +95,27 @@ SELECT
 FROM
     sql_1
 GROUP BY
+    name;
+```
+
+注意我们可以使用如下语法保存SELECT查询的表
+```sql
+CREATE TABLE new_table AS
+SELECT column1, column2, ...
+FROM existing_table
+WHERE condition;
+```
+
+
+### 例子2：成绩汇总表 II
+我们如果想要将表2反向转换为表1该怎么做？——此时应该使用`UNION ALL`连接
+
+```sql
+SELECT name, '语文' as subject, 语文 FROM sql_2
+UNION ALL
+SELECT name, '数学' as subject, 数学 FROM sql_2
+UNION ALL
+SELECT name, '英语' as subject, 英语 FROM sql_2
+ORDER BY
     name;
 ```
