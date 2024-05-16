@@ -119,3 +119,9 @@ SELECT name, '英语' as subject, 英语 FROM sql_2
 ORDER BY
     name;
 ```
+
+**解题步骤**
+- (1) 确定转换列，非转换列
+- (2) 生成新列
+- (3) 使用`union all`或者`union`进行合并
+- (4) 根据需要进行排序`order by`
