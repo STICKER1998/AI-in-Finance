@@ -1,13 +1,15 @@
 ## Section 3.2 窗口函数
-### 窗口
+### 1.什么是窗口
+#### 窗口
 窗口限定一个范围，他可以理解为满足某些条件的记录集合，窗口函数也就是在窗口范围内执行的函数。
 
-### 基本语法
+#### 基本语法
 ```sql
 <函数名> over (partition by <分组的列> order by <排序的列> rows between <起始行> and <终止行>)
 ```
 
-
+### 2.窗口的确定
+#### 样本
 ```sql
 CREATE TABLE SQL_5(
     cid varchar(4),
@@ -36,10 +38,10 @@ select *, sum(score) over (partition by cid) as "班级总分" FROM sql_5;
 select cid, sum(score) as "班级总分" FROM sql_5 GROUP BY cid;
 ```
 
-### 排序子句（`ORDER BY`)
+#### 排序子句（`ORDER BY`)
 其使用方式和一般的排序检索一致，如果不要排序可以不写或者`ORDER BY NULL`。
 
-### 窗口子句 (`ROWS`)
+#### 窗口子句 (`ROWS`)
 窗口子句的描述：`ROWS BETWEEN <起始行> AND <终止行>`
 - 起始行：N preceding/ unbounded preceding
 - 当前行：current row
@@ -57,7 +59,13 @@ select cid, sum(score) as "班级总分" FROM sql_5 GROUP BY cid;
 > - 如果只使用排序子句`ORDER BY`，但不使用窗口子句`ROWS`，则默认使用`ROWS BETWEEN unbounded preceding AND current row`;
 
 
-### 总体流程
+#### 总体流程
 - 通过`PARTITION BY`和`ORDER BY`子句确定大窗口；（即每个分区的起始处unbounded preceding和终止处unbounded following）
 - 通过`ROWS`子句针对每一行数据确定小窗口；
 - 对每行的小窗口内的数据执行行数并生成新的列；
+
+
+### 3.函数分类
+
+
+
