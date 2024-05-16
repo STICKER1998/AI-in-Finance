@@ -44,7 +44,7 @@ select cid, sum(score) as "班级总分" FROM sql_5 GROUP BY cid;
 `ROWS BETWEEN current row AND 1 following`：从当前行到下一行
 
 > [!NOTE]
-> - 如果不使用ORDER BY 和 ROW，则默认使用`ROWS BETWEEN unbounded preceding AND unbounded following`;
-> - 如果只使用ORDER BY，但不使用 ROW，则默认使用`ROWS BETWEEN unbounded preceding AND current row`;
+> - 如果不使用`ORDER BY`和`ROWS`，则默认使用`ROWS BETWEEN unbounded preceding AND unbounded following`;
+> - 如果只使用`ORDER BY`，但不使用`ROWS`，则默认使用`ROWS BETWEEN unbounded preceding AND current row`;
 
 
