@@ -24,9 +24,10 @@ insert into SQL_5 (cid, sname, score) values('002', '小红', 85);
 insert into SQL_5 (cid, sname, score) values('002', '小刚', 62);
 ```
 
-注意partition by 和group by的区别
-- 前者不会压缩行数，但是后者会
-- 后者只能选取分组的列和聚合的列：如下两段代码中使用窗口函数时既可以返回所有的列，还可以返回使用聚合函数之后的结果，而对于group by而言只能返回分组列和聚合函数作用后的结果。
+> [!NOTE]
+> 注意partition by 和group by的区别
+> - 前者不会压缩行数，但是后者会
+> - 后者只能选取分组的列和聚合的列：如下两段代码中使用窗口函数时既可以返回所有的列，还可以返回使用聚合函数之后的结果，而对于group by而言只能返回分组列和聚合函数作用后的结果。
 
 ```sql
 select *, sum(score) over (partition by cid) as "班级总分" FROM sql_5;
