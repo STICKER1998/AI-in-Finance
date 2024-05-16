@@ -10,7 +10,7 @@ Quant Finance & Data Analysis
 | ---                       |---                                              |                                        
 |[Transformer-based Models](./notebooks/Topic1.md)   |2024/02/21 |          
 |Factor Models              |         coming soon                             |
-|[MySQL](#mysql)                   |        2024/05/07           |                                   
+|[MySQL](#mysql)                   |        2024/05/16           |                                   
 | [Linux](#linux)                    |               2024/05/08                  |       
 |Python                     |    coming soon                                  |
  
