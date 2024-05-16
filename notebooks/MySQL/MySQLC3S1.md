@@ -41,3 +41,44 @@ insert into SQL_1(name, subject, score) values('王五', '英语', 91);
 | 张三| 78 | 88 | 98 |
 | 李四 | 89 | 76 | 90 |
 | 王五 | 99 | 66 | 91 |
+
+**解答**
+
+```sql
+SELECT
+    name, SUM(语文), SUM(数学), SUM(英语)
+FROM
+    (SELECT *,
+           CASE subject WHEN '语文' THEN SCORE ELSE null END as '语文',
+           CASE subject WHEN '数学' THEN SCORE ELSE null END as '数学',
+           CASE subject WHEN '英语' THEN SCORE ELSE null END as '英语'
+    FROM
+        sql_1) as Result
+GROUP BY
+    name;
+```
+
+**分析**
+我们首先创建一张临时表增加三个“伪列”
+```sql
+SELECT *,
+           CASE subject WHEN '语文' THEN SCORE ELSE null END as '语文',
+           CASE subject WHEN '数学' THEN SCORE ELSE null END as '数学',
+           CASE subject WHEN '英语' THEN SCORE ELSE null END as '英语'
+    FROM
+        sql_1
+```
+其返回结果为
+
+|name|subject|score|语文|数学|英语|
+| :---: | :---: | :---: | :---: |:---: | :---: | 
+|张三| 语文 | 78 | 78 | <null> | <null> | 
+| 张三 | 数学 | 88 | <null> | 88 | <null> |  
+| 张三 | 英语 | 98 | <null> | <null> | 98 |  
+| 李四 | 语文 | 89 | 89 | <null> | <null> |  
+| 李四 | 数学 | 76 | <null> | 76 | <null> |  
+| 李四 | 英语 | 90 | <null> | <null> | 90 |  
+| 王五 | 语文 | 99 | 99 | <null> | <null> |  
+| 王五 | 数学 | 66 | <null> | 66 | <null> 
+| 王五 | 英语 | 91 | <null> | <null> | 91 |  
+
