@@ -5,7 +5,7 @@
 
 #### 基本语法
 ```sql
-<函数名> OVER (PARTITION <分组的列> ORDER BY <排序的列> ROWS BETWEEN <起始行> AND <终止行>)
+<函数名> OVER (PARTITION BY <分组的列> ORDER BY <排序的列> ROWS BETWEEN <起始行> AND <终止行>)
 ```
 
 ### 2.窗口的确定
