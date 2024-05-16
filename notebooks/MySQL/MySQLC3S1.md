@@ -4,6 +4,8 @@ Chapter 3 经典问题
 ### 例子1：成绩汇总表I - 行转列
 我们考虑如下一个问题，将如图所示的表1转换成表2
 
+`sql_1`表
+
 | name | subject |  score |
 | :---: | :---: | :---: |
 | 张三| 语文 |   78 |
@@ -36,6 +38,8 @@ insert into SQL_1(name, subject, score) values('王五', '语文', 99);
 insert into SQL_1(name, subject, score) values('王五', '数学', 66);
 insert into SQL_1(name, subject, score) values('王五', '英语', 91);
 ```
+
+`sql_2`表
 
 | name| 语文 | 数学 | 英语 |
 | :---: | :---: | :---: | :---: |
