@@ -66,6 +66,12 @@ select cid, sum(score) as "班级总分" FROM sql_5 GROUP BY cid;
 
 
 ### 3.函数分类
+#### 排序函数
+rank, dense_rank, row_number
 
+#### 聚合函数
+
+#### 跨行行数
+lag, lead
 
 
