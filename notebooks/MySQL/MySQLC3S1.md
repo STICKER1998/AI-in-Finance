@@ -83,3 +83,16 @@ SELECT *,
 | 王五 | 英语 | 91 | <null> | <null> | 91 |  
 
 再使用分组查询与聚合函数来生成最终表。
+
+另外我们还可以使用如下一步法的解答
+```sql
+SELECT
+    name,
+    SUM(CASE subject WHEN '语文' THEN SCORE ELSE null END) as '语文' ,
+    SUM(CASE subject WHEN '数学' THEN SCORE ELSE null END) as '数学',
+    SUM(CASE subject WHEN '英语' THEN SCORE ELSE null END) as '英语'
+FROM
+    sql_1
+GROUP BY
+    name;
+```
