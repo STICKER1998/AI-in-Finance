@@ -34,6 +34,7 @@ insert into SQL_5 (cid, sname, score) values('002', '小刚', 62);
 ```sql
 select *, sum(score) over (partition by cid) as "班级总分" FROM sql_5;
 ```
+
 ```sql
 select cid, sum(score) as "班级总分" FROM sql_5 GROUP BY cid;
 ```
@@ -68,6 +69,8 @@ select cid, sum(score) as "班级总分" FROM sql_5 GROUP BY cid;
 ### 3.函数分类
 #### 排序函数
 rank, dense_rank, row_number
+
+
 
 #### 聚合函数
 
