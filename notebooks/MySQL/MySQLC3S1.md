@@ -18,7 +18,7 @@ Chapter 3 经典问题
 ```sql
 create table SQL_1
 (
-    name varchar(20).
+    name varchar(20),
     subject varchar(20),
     score float
 );
