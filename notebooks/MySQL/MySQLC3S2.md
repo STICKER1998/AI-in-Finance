@@ -196,4 +196,13 @@ t2 as(SELECT *, date_sub(login_date, INTERVAL rn DAY) as sub_date FROM t1)
 SELECT DISTINCT user_id FROM t2 GROUP BY user_id,  sub_date having count(*)>=3;
 ```
 
+这个解法的精髓在于可以生成**自增伪列**，然后使用login_date减掉伪列后得到的结果相等时则表示login_date连续。下面这个解法先是创造一个新的列用于表示login_date的lag序列（对应的上一个数据组成的列）。
+
+```sql
+WITH
+t0 as (SELECT DISTINCT * FROM SQL_8 ),
+t1 as (SELECT *, lag(login_date, 1) OVER(PARTITION BY user_id ORDER BY login_date) as last_login_date FROM t0),
+t2 as (SELECT *, datediff(login_date,last_login_date) as diff from t1)
+SELECT DISTINCT user_id FROM t2 WHERE diff=1 GROUP BY user_id HAVING count(*)>=2;
+```
 
