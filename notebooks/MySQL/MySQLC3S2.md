@@ -86,7 +86,7 @@ sum avg count max min
 #### 跨行行数
 lag, lead
 
-#### 示例：TOPN问题以及平均分问题
+### TOPN问题以及分类聚合问题
 **数据库**
 ```sql
 CREATE TABLE SQL_6(
@@ -156,5 +156,6 @@ HAVING
 
 ```
 
+### 连续问题
 
 
