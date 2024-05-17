@@ -74,10 +74,18 @@ rank, dense_rank, row_number
 ```sql
 SELECT *, row_number() over (partition by cid order by score desc) as '不可并列排名',
           rank() over (partition by cid order by score desc) as '跳跃可并列排名',
-          dense_rank() over (partition by cid order by score desc) as '不可并列排名'
+          dense_rank() over (partition by cid order by score desc) as '连续可并列排名'
 FROM
     sql_5;
 ```
+| cid | sname | score | 不可并列排名 | 跳跃可并列排名 | 不可并列排名 |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| 001 | 李四 | 82 | 1 | 1 | 1 |
+| 001 | 张三 | 78 | 2 | 2 | 2 |
+| 001 | 王五 | 67 | 3 | 3 | 3 |
+| 002 | 小明 | 90 | 1 | 1 | 1 |
+| 002 | 小刚 | 90 | 2 | 1 | 1 |
+| 002 | 小红 | 85 | 3 | 3 | 2 |
 
 
 #### 聚合函数
