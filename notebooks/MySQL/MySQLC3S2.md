@@ -26,6 +26,8 @@ insert into SQL_5 (cid, sname, score) values('002', '小红', 85);
 insert into SQL_5 (cid, sname, score) values('002', '小刚', 62);
 ```
 
+#### 分组子句(`PARTITION BY`)
+
 > [!NOTE]
 > **注意partition by 和group by的区别**
 > - 前者不会压缩行数，但是后者会
