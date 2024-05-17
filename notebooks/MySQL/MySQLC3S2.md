@@ -86,7 +86,7 @@ sum avg count max min
 #### 跨行行数
 lag, lead
 
-### TOPN问题以及分类聚合问题
+### 4.TOPN问题以及分类聚合问题
 **数据库**
 ```sql
 CREATE TABLE SQL_6(
@@ -156,6 +156,44 @@ HAVING
 
 ```
 
-### 连续问题
+### 5.连续问题
+查找出连续三天登陆的用户
+```sql
+CREATE TABLE SQL_8(
+    user_id varchar(2),
+    login_date date
+);
+
+INSERT INTO SQL_8(user_id, login_date) VALUES('A','2022-09-02');
+INSERT INTO SQL_8(user_id, login_date) VALUES('A','2022-09-03');
+INSERT INTO SQL_8(user_id, login_date) VALUES('A','2022-09-04');
+INSERT INTO SQL_8(user_id, login_date) VALUES('B','2021-11-25');
+INSERT INTO SQL_8(user_id, login_date) VALUES('B','2021-12-30');
+INSERT INTO SQL_8(user_id, login_date) VALUES('C','2022-01-01');
+INSERT INTO SQL_8(user_id, login_date) VALUES('C','2022-04-04');
+INSERT INTO SQL_8(user_id, login_date) VALUES('C','2022-09-03');
+INSERT INTO SQL_8(user_id, login_date) VALUES('C','2022-09-04');
+INSERT INTO SQL_8(user_id, login_date) VALUES('C','2022-09-05');
+INSERT INTO SQL_8(user_id, login_date) VALUES('A','2022-09-03');
+INSERT INTO SQL_8(user_id, login_date) VALUES('D','2022-10-20');
+INSERT INTO SQL_8(user_id, login_date) VALUES('D','2022-10-21');
+INSERT INTO SQL_8(user_id, login_date) VALUES('A','2022-10-03');
+INSERT INTO SQL_8(user_id, login_date) VALUES('D','2022-10-22');
+INSERT INTO SQL_8(user_id, login_date) VALUES('D','2022-10-23');
+```
+
+**分析**
+- useid要相同，表示同一用户；
+- 每一用户每行记录以登陆时间从小到大排序；
+- 后一行记录比前一行登陆时间多一天；
+- 数据行数据大于N；
+
+```sql
+WITH 
+t0 as (SELECT DISTINCT * FROM SQL_8 ),
+t1 as (SELECT *, ROW_NUMBER() over (PARTITION BY user_id ORDER BY SQL_8.login_date) as rn FROM t0),
+t2 as(SELECT *, date_sub(login_date, INTERVAL rn DAY) as sub_date FROM t1)
+SELECT DISTINCT user_id FROM t2 GROUP BY user_id,  sub_date having count(*)>=3;
+```
 
 
