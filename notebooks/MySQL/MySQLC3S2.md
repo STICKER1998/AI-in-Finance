@@ -157,13 +157,15 @@ HAVING
 ```
 
 ### 5.连续问题
-查找出连续三天登陆的用户
+#### 问题1：连续登陆问题
+根据用户的`user_id`以及`login_date`查找出连续三天登陆的用户的`user_id`
 ```sql
 CREATE TABLE SQL_8(
     user_id varchar(2),
     login_date date
 );
-
+```
+```sql
 INSERT INTO SQL_8(user_id, login_date) VALUES('A','2022-09-02');
 INSERT INTO SQL_8(user_id, login_date) VALUES('A','2022-09-03');
 INSERT INTO SQL_8(user_id, login_date) VALUES('A','2022-09-04');
@@ -196,8 +198,23 @@ t2 as(SELECT *, date_sub(login_date, INTERVAL rn DAY) as sub_date FROM t1)
 SELECT DISTINCT user_id FROM t2 GROUP BY user_id,  sub_date having count(*)>=3;
 ```
 
-这个解法的精髓在于可以生成**自增伪列**，然后使用login_date减掉伪列后得到的结果相等时则表示login_date连续。下面这个解法先是创造一个新的列用于表示login_date的lag序列（对应的上一个数据组成的列）。
+这个解法的精髓在于可以生成**自增伪列**，如果使用login_date减掉伪列后的结果中出现连续出现三个一样的结果时，那么说明该用户连续三天登录。
 
+下面这个解法先是创造两个新的列用于分别表示login_date滞后一天和滞后两天的序列。当login_date和两个同行中滞后值分别相差1和2时，则表示该用户连续三天登录。
+
+```sql
+WITH
+t0 as (SELECT DISTINCT * FROM SQL_8 ),
+t1 as (SELECT *,
+              lag(login_date, 1) OVER(PARTITION BY user_id ORDER BY login_date) as l1_login_date,
+              lag(login_date, 2) OVER(PARTITION BY user_id ORDER BY login_date) as l2_login_date FROM t0),
+t2 as (SELECT *, datediff(login_date, l1_login_date) as diff1, datediff(login_date, l2_login_date) as diff2 from t1)
+SELECT DISTINCT user_id FROM t2 WHERE diff1=1 AND diff2=2 GROUP BY user_id;
+```
+
+> [!WARNING]
+> 下面的代码看似正确，但实际上是错误的。
+> **反例**：用户A先连续两天登录，然后再连续2天登录，中间间隔的时间段中其他用户（B,C,D）无连续登陆时，用户A也会被判定为连续3天登录。
 ```sql
 WITH
 t0 as (SELECT DISTINCT * FROM SQL_8 ),
