@@ -214,6 +214,7 @@ SELECT DISTINCT user_id FROM t2 WHERE diff1=1 AND diff2=2 GROUP BY user_id;
 
 > [!WARNING]
 > 下面的代码看似正确，但实际上是错误的。
+>
 > **反例**：用户A先连续两天登录，然后再连续2天登录，中间间隔的时间段中其他用户（B,C,D）无连续登陆时，用户A也会被判定为连续3天登录。
 ```sql
 WITH
@@ -222,4 +223,46 @@ t1 as (SELECT *, lag(login_date, 1) OVER(PARTITION BY user_id ORDER BY login_dat
 t2 as (SELECT *, datediff(login_date,last_login_date) as diff from t1)
 SELECT DISTINCT user_id FROM t2 WHERE diff=1 GROUP BY user_id HAVING count(*)>=2;
 ```
+
+#### 问题2：连续进球问题
+编写SQL语句，检索出连续进了3球的队员编号`player_id`。
+```sql
+CREATE TABLE SQL_9(
+    player_id varchar(2),
+    score int,
+    score_time datetime
+);
+```
+```sql
+INSERT INTO SQL_9 (player_id, score, score_time)
+VALUES ('A3', 1,'2022-09-20 19:00:14') ,('A3', 1,'2022-09-20 19:01:04'),
+       ('A3', 3,'2022-09-20 19:01:16') ,('B1', 3,'2022-09-20 19:02:05'),
+       ('A2', 2,'2022-09-20 19:02:25') ,('B3', 2,'2022-09-20 19:02:54'),
+       ('A1', 3,'2022-09-20 19:03:10') ,('A1', 2,'2022-09-20 19:03:34'),
+       ('B2', 2,'2022-09-20 19:03:58') ,('B1', 3,'2022-09-20 19:04:07'),
+       ('A1', 1,'2022-09-20 19:04:19') ,('A1', 2,'2022-09-20 19:04:31');
+```
+
+**解法**
+```sql
+WITH t1 as (SELECT *, lag(player_id,1) OVER(ORDER BY score_time) as l1_player_id,
+    lag(player_id,2) OVER(ORDER BY score_time) as l2_player_id FROM SQL_9)
+SELECT DISTINCT player_id FROM t1 WHERE player_id = l1_player_id AND player_id = l2_player_id GROUP BY player_id;
+```
+
+**错误解法**
+```sql
+WITH t1 as (SELECT *, lag(player_id,1) OVER(ORDER BY score_time) as layer_player_id FROM SQL_9)
+SELECT DISTINCT player_id FROM t1 WHERE player_id = layer_player_id GROUP BY player_id HAVING count(*)>=2;
+```
+
+#### 问题3：连续区间起止点id查找
+查找出`log_id`中的连续区间，并返回其起点`start_id`和终止点`end_id`。譬如下面的`log_id`中（1，2，3）为一个连续区间，其`start_id=1`，`end_id=3`》
+```sql
+CREATE TABLE SQL_10(
+    log_id int
+);
+INSERT INTO SQL_10(log_id) VALUES(1),(2),(3),(7),(8),(10);
+```
+
 
