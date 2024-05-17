@@ -86,4 +86,75 @@ sum avg count max min
 #### 跨行行数
 lag, lead
 
+#### 示例：TOPN问题以及平均分问题
+**数据库**
+```sql
+CREATE TABLE SQL_6(
+    cid varchar(4),
+    sname varchar(4),
+    course varchar(10),
+    score int
+);
+
+insert into SQL_6(cid, sname, course, score) values('001', '张三','地理', 70);
+insert into SQL_6(cid, sname, course, score) values('001', '李四','地理', 52);
+insert into SQL_6(cid, sname, course, score) values('001', '王五','地理', 88);
+
+insert into SQL_6(cid, sname, course, score) values('001', '张三','数学', 77);
+insert into SQL_6(cid, sname, course, score) values('001', '李四','数学', 56);
+insert into SQL_6(cid, sname, course, score) values('001', '王五','数学', 97);
+
+insert into SQL_6(cid, sname, course, score) values('001', '张三','英语', 66);
+insert into SQL_6(cid, sname, course, score) values('001', '李四','英语', 61);
+insert into SQL_6(cid, sname, course, score) values('001', '王五','英语', 81);
+
+insert into SQL_6(cid, sname, course, score) values('001', '张三','语文', 78);
+insert into SQL_6(cid, sname, course, score) values('001', '李四','语文', 60);
+insert into SQL_6(cid, sname, course, score) values('001', '王五','语文', 80);
+
+insert into SQL_6(cid, sname, course, score) values('002', '小明','地理', 45);
+insert into SQL_6(cid, sname, course, score) values('002', '小红','地理', 82);
+insert into SQL_6(cid, sname, course, score) values('002', '小刚','地理', 66);
+
+insert into SQL_6(cid, sname, course, score) values('002', '小明','数学', 49);
+insert into SQL_6(cid, sname, course, score) values('002', '小红','数学', 82);
+insert into SQL_6(cid, sname, course, score) values('002', '小刚','数学', 67);
+
+insert into SQL_6(cid, sname, course, score) values('002', '小明','英语', 55);
+insert into SQL_6(cid, sname, course, score) values('002', '小红','英语', 87);
+insert into SQL_6(cid, sname, course, score) values('002', '小刚','英语', 50);
+
+insert into SQL_6(cid, sname, course, score) values('002', '小明','语文', 58);
+insert into SQL_6(cid, sname, course, score) values('002', '小红','语文', 87);
+insert into SQL_6(cid, sname, course, score) values('002', '小刚','语文', 71);
+```
+
+**问题1：返回每个同学的信息及其考试分数排名前三的科目及其信息**
+```sql
+SELECT *
+FROM
+    (SELECT *, row_number() over (partition by sname order by score desc) as rn
+    FROM sql_6) as temp
+WHERE rn<=3;
+```
+
+**问题2：求出每门课程都高于班级课程平均分的学生**
+```sql
+WITH
+t1 as (SELECT *, AVG(score) OVER(PARTITION BY cid, course) as avg FROM sql_6),
+
+t2 as (SELECT *, score - avg as del FROM t1)
+
+SELECT
+    sname
+FROM
+    t2
+GROUP BY
+    sname
+HAVING
+    min(del)>=0;
+
+```
+
+
 
