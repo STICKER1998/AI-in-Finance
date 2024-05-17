@@ -73,8 +73,10 @@ select cid, sum(score) as "班级总分" FROM sql_5 GROUP BY cid;
 rank, dense_rank, row_number
 ```sql
 SELECT *, row_number() over (partition by cid order by score desc) as '不可并列排名',
-          rank() over (partition by cid order by score desc) as '跳跃可并列排名'，
+          rank() over (partition by cid order by score desc) as '跳跃可并列排名',
           dense_rank() over (partition by cid order by score desc) as '不可并列排名'
+FROM
+    sql_5;
 ```
 
 
