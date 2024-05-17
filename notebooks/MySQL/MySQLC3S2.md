@@ -257,7 +257,7 @@ SELECT DISTINCT player_id FROM t1 WHERE player_id = layer_player_id GROUP BY pla
 ```
 
 #### 问题3：连续区间起止点id查找
-查找出`log_id`中的连续区间，并返回其起点`start_id`和终止点`end_id`。譬如下面的`log_id`中（1，2，3）为一个连续区间，其`start_id=1`，`end_id=3`》
+查找出`log_id`中的连续区间，并返回其起点`start_id`和终止点`end_id`。譬如下面的`log_id`中（1，2，3）为一个连续区间，其`start_id=1`，`end_id=3`。
 ```sql
 CREATE TABLE SQL_10(
     log_id int
@@ -265,4 +265,11 @@ CREATE TABLE SQL_10(
 INSERT INTO SQL_10(log_id) VALUES(1),(2),(3),(7),(8),(10);
 ```
 
+**解答**
 
+```sql
+SELECT * FROM SQL_10;
+WITH t1 as (SELECT *, ROW_NUMBER() over (PARTITION BY NULL ORDER BY log_id) as row_num FROM sql_10),
+t2 as (SELECT *, log_id-row_num as diff FROM t1)
+SELECT min(log_id) as start_id, max(log_id) as end_id FROM t2 GROUP BY diff HAVING count(*)>1;
+```
