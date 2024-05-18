@@ -363,8 +363,9 @@ SELECT DISTINCT user_id FROM t2 WHERE diff=1 GROUP BY user_id HAVING count(*)>=2
 ```
 
 #### 问题2：连续进球问题
-编写SQL语句，检索出连续进了3球的队员编号`player_id`。
+编写SQL语句，检索出连续进三球的队员编号`player_id`。
 
+表`SQL_9`：分别记录了球员的id `player_id`，进球得分`score`和进球时间`score_time`。
 | player\_id | score | score\_time |
 | :--- | :--- | :--- |
 | A3 | 1 | 2022-09-20 19:00:14 |
@@ -397,12 +398,30 @@ VALUES ('A3', 1,'2022-09-20 19:00:14') ,('A3', 1,'2022-09-20 19:01:04'),
        ('A1', 1,'2022-09-20 19:04:19') ,('A1', 2,'2022-09-20 19:04:31');
 ```
 
-**解法**
+**解答**
 ```sql
 WITH t1 as (SELECT *, lag(player_id,1) OVER(ORDER BY score_time) as l1_player_id,
     lag(player_id,2) OVER(ORDER BY score_time) as l2_player_id FROM SQL_9)
 SELECT DISTINCT player_id FROM t1 WHERE player_id = l1_player_id AND player_id = l2_player_id GROUP BY player_id;
 ```
+
+**解题思路**
+我们先利用窗口函数生成两个新列用于记录前一进球的球员id和前两进球的球员id，只有当三个id均相同时才表示该球员连进三球。
+| player\_id | score | score\_time | l1\_player\_id | l2\_player\_id |
+| :--- | :--- | :--- | :--- | :--- |
+| A3 | 1 | 2022-09-20 19:00:14 | null | null |
+| A3 | 1 | 2022-09-20 19:01:04 | A3 | null |
+| A3 | 3 | 2022-09-20 19:01:16 | A3 | A3 |
+| B1 | 3 | 2022-09-20 19:02:05 | A3 | A3 |
+| A2 | 2 | 2022-09-20 19:02:25 | B1 | A3 |
+| B3 | 2 | 2022-09-20 19:02:54 | A2 | B1 |
+| A1 | 3 | 2022-09-20 19:03:10 | B3 | A2 |
+| A1 | 2 | 2022-09-20 19:03:34 | A1 | B3 |
+| B2 | 2 | 2022-09-20 19:03:58 | A1 | A1 |
+| B1 | 3 | 2022-09-20 19:04:07 | B2 | A1 |
+| A1 | 1 | 2022-09-20 19:04:19 | B1 | B2 |
+| A1 | 2 | 2022-09-20 19:04:31 | A1 | B1 |
+
 
 **结果**
 | player\_id |
@@ -442,7 +461,7 @@ SELECT DISTINCT player_id FROM t1 WHERE player_id = layer_player_id GROUP BY pla
 
 
 #### 问题3：连续区间起止点id查找
-查找出`log_id`中的连续区间，并返回其起点`start_id`和终止点`end_id`。譬如下面表`SQL_10`的`log_id`中（1，2，3）为一个连续区间，其`start_id=1, end_id=3`。
+查找出`log_id`中的连续区间，并返回其起始点id `start_id` 和终止点id `end_id`。譬如下面表`SQL_10`的`log_id`中（1，2，3）为一个连续区间，其`start_id=1, end_id=3`。
 
 表`SQL_10`：记录了登陆账户的id。
 | log\_id |
@@ -462,7 +481,7 @@ INSERT INTO SQL_10(log_id) VALUES(1),(2),(3),(7),(8),(10);
 ```
 
 **解题思路**
-我们先插入一段自增伪列`row_num`，再使用`log_id`减去`row_num`得到`diff`。在`log_id`的连续区间，`diff`将会是一样的。`log_id`=1,2,3时，对应的`diff`均为0。
+我们先插入一段自增伪列`row_num`，再使用`log_id`减去`row_num`得到`diff`。在`log_id`的连续区间，`diff`将会是一样的。`log_id`=1,2,3时，对应的`diff`均为0。最后根据`diff`的值进行分组查询，并在每个分组（每个连续区间）分别检索其起始点id和终止点id。
 | log\_id | row\_num | diff |
 | :--- | :--- | :--- |
 | 1 | 1 | 0 |
