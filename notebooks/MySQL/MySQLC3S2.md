@@ -315,11 +315,13 @@ INSERT INTO SQL_8(user_id, login_date) VALUES('D','2022-10-22');
 INSERT INTO SQL_8(user_id, login_date) VALUES('D','2022-10-23');
 ```
 
-**分析**
-- useid要相同，表示同一用户；
+**解题思路（行号过滤法）**
+- user_id要相同，表示同一用户；
 - 每一用户每行记录以登陆时间从小到大排序；
 - 后一行记录比前一行登陆时间多一天；
 - 数据行数据大于N；
+
+行号过滤法的思路在于首先根据`user_id`分组且在组内生成**自增伪列**（连续区间列），如果使用`login_date`减掉伪列后的结果中`sub_date`出现连续出现三个一样的结果时，说明该用户连续三天登录。
 
 ```sql
 WITH 
@@ -336,7 +338,7 @@ SELECT DISTINCT user_id FROM t2 GROUP BY user_id,  sub_date having count(*)>=3;
 | C |
 | D |
 
-这个解法的精髓在于可以生成**自增伪列**，如果使用login_date减掉伪列后的结果中出现连续出现三个一样的结果时，那么说明该用户连续三天登录。
+
 
 下面这个解法先是创造两个新的列用于分别表示login_date滞后一天和滞后两天的序列。当login_date和两个同行中滞后值分别相差1和2时，则表示该用户连续三天登录。
 
