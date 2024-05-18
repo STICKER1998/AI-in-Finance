@@ -49,9 +49,25 @@ insert into SQL_5 (cid, sname, score) values('002', '小刚', 62);
 select *, sum(score) over (partition by cid) as "班级总分" FROM sql_5;
 ```
 
+| cid | sname | score | 班级总分 |
+| :--- | :--- | :--- | :--- |
+| 001 | 张三 | 78 | 227 |
+| 001 | 李四 | 82 | 227 |
+| 001 | 王五 | 67 | 227 |
+| 002 | 小明 | 90 | 265 |
+| 002 | 小红 | 85 | 265 |
+| 002 | 小刚 | 90 | 265 |
+
+
 ```sql
 select cid, sum(score) as "班级总分" FROM sql_5 GROUP BY cid;
 ```
+
+| cid | 班级总分 |
+| :--- | :--- |
+| 001 | 227 |
+| 002 | 265 |
+
 
 #### 排序子句（`ORDER BY`)
 其使用方式和一般的排序检索一致，如果不要排序可以不写或者`ORDER BY NULL`。
