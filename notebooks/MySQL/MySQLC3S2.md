@@ -370,6 +370,56 @@ FROM t2;
 | 7 | Fred | 2017-03-01 | 3500 | B | 3 | 4 | 0.75 | 中层 |
 | 8 | Eason | 2020-03-01 | 4000 | B | 4 | 4 | 1.00 | 高层 |
 
+#### 问题3：第二高的薪水（leetcode 176）
+这个题目很简单，但是有一个细节值得细说。
+
+**任务**：查询并返回 Employee 表中第二高的薪水。如果不存在第二高的薪水，查询应该返回 null(Pandas 则返回 None) 。
+
+**样本**：`Employee`表中id 是这个表的主键，表的每一行包含员工的工资信息。
+
+| Column Name | Type |
+|:---:|:---:|
+| id          | int  |
+| salary      | int  |
+
+**输入**
+
+| id | salary |
+|:---:|:---:|
+| 1  | 100    |
+| 2  | 200    |
+| 3  | 300    |
+
+**输出**
+
+| SecondHighestSalary |
+|:---:|
+| 200 |
+
+
+**输入**
+Employee 表：
+
+| id | salary |
+|:---:|:---:|
+| 1  | 100    |
+
+**输出**
+
+| SecondHighestSalary |
+|:---:|
+| null|
+
+**解答**
+```sql
+WITH 
+t as (SELECT *, DENSE_RANK() OVER(ORDER BY salary DESC) as rn FROM Employee)
+SELECT (SELECT DISTINCT salary FROM t WHERE rn = 2) as SecondHighestSalary;
+```
+> [!WARNING]
+> 本题的坑在于怎么输出null上，如果把`SELECT (SELECT DISTINCT salary FROM t WHERE rn = 2) as SecondHighestSalary`中的`SELECT DISTINCT salary FROM t WHERE rn = 2`记为了表t1，再 `SELECT salary as SecondHighestSalary FROM t1`，那么你将得不到null的返回。
+> 因为若`t1`是一张空表，从空表中返回内容得不到null，而是什么都不显示。
+
 ----------------------------------------------------------------------------------------------------------------------
 ### 5.连续问题
 #### 问题1：连续登陆问题
