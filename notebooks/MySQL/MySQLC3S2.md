@@ -269,7 +269,9 @@ HAVING
 
 ### 5.连续问题
 #### 问题1：连续登陆问题
-根据用户的`user_id`以及`login_date`查找出连续三天登陆的用户的`user_id`
+**任务**：编写SQL语句，根据用户的`user_id`以及`login_date`查找出连续三天登陆的用户的`user_id`。
+
+**样本**：表`SQL_8`记录了用户的id：`user_id`以及登陆时间：`login_date`。
 
 | user\_id | login\_date |
 | :--- | :--- |
@@ -342,7 +344,6 @@ INSERT INTO SQL_8(user_id, login_date) VALUES('D','2022-10-23');
 | D | 2022-10-23 | 4 | 2022-10-19 |
 
 **解答**
-
 ```sql
 WITH 
 t0 as (SELECT DISTINCT * FROM SQL_8 ),
@@ -359,7 +360,7 @@ SELECT DISTINCT user_id FROM t2 GROUP BY user_id,  sub_date having count(*)>=3;
 | D |
 
 **解题思路（错位比较法）**
-错位比较法首先创造两个新的列用于分别表示在当前登录日期login_date的上一次登录日期和上两次的登陆日期。当`login_date= l1_login_date+1`且`login_date= l2_login_date+2`时，则表示该用户连续三天登录。
+错位比较法首先创造两个新的列用于分别表示在当前登录的上一次登录日期和上两次的登陆日期。当`login_date = l1_login_date+1`且`login_date = l2_login_date+2`时，则表示该用户连续三天登录。
 
 | user\_id | login\_date | l1\_login\_date | l2\_login\_date | diff1 | diff2 |
 | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -378,7 +379,6 @@ SELECT DISTINCT user_id FROM t2 GROUP BY user_id,  sub_date having count(*)>=3;
 | D | 2022-10-21 | 2022-10-20 | null | 1 | null |
 | D | 2022-10-22 | 2022-10-21 | 2022-10-20 | 1 | 2 |
 | D | 2022-10-23 | 2022-10-22 | 2022-10-21 | 1 | 2 |
-
 
 ```sql
 WITH
@@ -403,7 +403,7 @@ SELECT DISTINCT user_id FROM t2 WHERE diff=1 GROUP BY user_id HAVING count(*)>=2
 ```
 
 #### 问题2：连续进球问题
-**要求**： 编写SQL语句，检索出连续进三球的队员编号`player_id`。
+**任务**： 编写SQL语句，检索出连续进三球的队员编号`player_id`。
 
 **样本**：表`SQL_9`分别记录了球员的id： `player_id`，进球得分：`score`和进球时间：`score_time`。
 | player\_id | score | score\_time |
@@ -507,10 +507,11 @@ SELECT DISTINCT player_id FROM t1 WHERE player_id = layer_player_id GROUP BY pla
 | A1 | 2 | 2022-09-20 19:04:31 |
 
 
-#### 问题3：连续区间起止点id查找
-查找出`log_id`中的连续区间，并返回其起始点id `start_id` 和终止点id `end_id`。譬如下面表`SQL_10`的`log_id`中（1，2，3）为一个连续区间，其`start_id=1, end_id=3`。
 
-表`SQL_10`：记录了登陆账户的id。
+#### 问题3：连续区间起止点id查找
+**任务**：查找出`log_id`中的连续区间，并返回其起始点id `start_id` 和终止点id `end_id`。譬如下面表`SQL_10`的`log_id`中（1，2，3）为一个连续区间，其`start_id=1, end_id=3`。
+
+**样本**： 表`SQL_10`记录了登陆账户的id。
 | log\_id |
 | :--- |
 | 1 |
