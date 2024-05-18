@@ -62,7 +62,7 @@ $$
 N = \frac{\sigma^2}{\delta^2}{\left(Z_{1-\frac{\alpha}{2}}+Z_{1-\frac{\beta}{2}})\right}^2
 $$
 
-
+在这个公式当中，$\alpha$为第一类错误的概率，$\beta$为犯第二类错误的概率，$\sigma$为样本数据的标准差，$\delta$代表的是预期实验组和对照组两组数据的差值。
 
 
 
