@@ -151,7 +151,34 @@ SELECT *, LEAD(score, 2) OVER (PARTITION BY cid ORDER BY score) as '高两名的
 | 002 | 小刚 | 90 | null |
 
 ### 4.TOPN问题以及分类聚合问题
-**数据库**
+#### 样本：：`SQL_6`表记录了不同学生的id，名字，课程和对应的课程分数。
+| cid | sname | course | score |
+| :--- | :--- | :--- | :--- |
+| 001 | 张三 | 地理 | 70 |
+| 001 | 李四 | 地理 | 52 |
+| 001 | 王五 | 地理 | 88 |
+| 001 | 张三 | 数学 | 77 |
+| 001 | 李四 | 数学 | 56 |
+| 001 | 王五 | 数学 | 97 |
+| 001 | 张三 | 英语 | 66 |
+| 001 | 李四 | 英语 | 61 |
+| 001 | 王五 | 英语 | 81 |
+| 001 | 张三 | 语文 | 78 |
+| 001 | 李四 | 语文 | 60 |
+| 001 | 王五 | 语文 | 80 |
+| 002 | 小明 | 地理 | 45 |
+| 002 | 小红 | 地理 | 82 |
+| 002 | 小刚 | 地理 | 66 |
+| 002 | 小明 | 数学 | 49 |
+| 002 | 小红 | 数学 | 82 |
+| 002 | 小刚 | 数学 | 67 |
+| 002 | 小明 | 英语 | 55 |
+| 002 | 小红 | 英语 | 87 |
+| 002 | 小刚 | 英语 | 50 |
+| 002 | 小明 | 语文 | 58 |
+| 002 | 小红 | 语文 | 87 |
+| 002 | 小刚 | 语文 | 71 |
+
 ```sql
 CREATE TABLE SQL_6(
     cid varchar(4),
@@ -163,31 +190,24 @@ CREATE TABLE SQL_6(
 insert into SQL_6(cid, sname, course, score) values('001', '张三','地理', 70);
 insert into SQL_6(cid, sname, course, score) values('001', '李四','地理', 52);
 insert into SQL_6(cid, sname, course, score) values('001', '王五','地理', 88);
-
 insert into SQL_6(cid, sname, course, score) values('001', '张三','数学', 77);
 insert into SQL_6(cid, sname, course, score) values('001', '李四','数学', 56);
 insert into SQL_6(cid, sname, course, score) values('001', '王五','数学', 97);
-
 insert into SQL_6(cid, sname, course, score) values('001', '张三','英语', 66);
 insert into SQL_6(cid, sname, course, score) values('001', '李四','英语', 61);
 insert into SQL_6(cid, sname, course, score) values('001', '王五','英语', 81);
-
 insert into SQL_6(cid, sname, course, score) values('001', '张三','语文', 78);
 insert into SQL_6(cid, sname, course, score) values('001', '李四','语文', 60);
 insert into SQL_6(cid, sname, course, score) values('001', '王五','语文', 80);
-
 insert into SQL_6(cid, sname, course, score) values('002', '小明','地理', 45);
 insert into SQL_6(cid, sname, course, score) values('002', '小红','地理', 82);
 insert into SQL_6(cid, sname, course, score) values('002', '小刚','地理', 66);
-
 insert into SQL_6(cid, sname, course, score) values('002', '小明','数学', 49);
 insert into SQL_6(cid, sname, course, score) values('002', '小红','数学', 82);
 insert into SQL_6(cid, sname, course, score) values('002', '小刚','数学', 67);
-
 insert into SQL_6(cid, sname, course, score) values('002', '小明','英语', 55);
 insert into SQL_6(cid, sname, course, score) values('002', '小红','英语', 87);
 insert into SQL_6(cid, sname, course, score) values('002', '小刚','英语', 50);
-
 insert into SQL_6(cid, sname, course, score) values('002', '小明','语文', 58);
 insert into SQL_6(cid, sname, course, score) values('002', '小红','语文', 87);
 insert into SQL_6(cid, sname, course, score) values('002', '小刚','语文', 71);
@@ -201,6 +221,28 @@ FROM
     FROM sql_6) as temp
 WHERE rn<=3;
 ```
+
+| cid | sname | course | score | rn |
+| :--- | :--- | :--- | :--- | :--- |
+| 002 | 小刚 | 语文 | 71 | 1 |
+| 002 | 小刚 | 数学 | 67 | 2 |
+| 002 | 小刚 | 地理 | 66 | 3 |
+| 002 | 小明 | 语文 | 58 | 1 |
+| 002 | 小明 | 英语 | 55 | 2 |
+| 002 | 小明 | 数学 | 49 | 3 |
+| 002 | 小红 | 英语 | 87 | 1 |
+| 002 | 小红 | 语文 | 87 | 2 |
+| 002 | 小红 | 地理 | 82 | 3 |
+| 001 | 张三 | 语文 | 78 | 1 |
+| 001 | 张三 | 数学 | 77 | 2 |
+| 001 | 张三 | 地理 | 70 | 3 |
+| 001 | 李四 | 英语 | 61 | 1 |
+| 001 | 李四 | 语文 | 60 | 2 |
+| 001 | 李四 | 数学 | 56 | 3 |
+| 001 | 王五 | 数学 | 97 | 1 |
+| 001 | 王五 | 地理 | 88 | 2 |
+| 001 | 王五 | 英语 | 81 | 3 |
+
 
 **问题2：求出每门课程都高于班级课程平均分的学生**
 ```sql
@@ -217,8 +259,13 @@ GROUP BY
     sname
 HAVING
     min(del)>=0;
-
 ```
+
+| sname |
+| :--- |
+| 王五 |
+| 小红 |
+
 
 ### 5.连续问题
 #### 问题1：连续登陆问题
