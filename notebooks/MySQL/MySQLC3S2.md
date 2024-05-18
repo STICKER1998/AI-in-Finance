@@ -9,7 +9,18 @@
 ```
 
 ### 2.窗口的确定
-#### 样本
+#### 样本`SQL_5`
+
+| cid | sname | score |
+| :--- | :--- | :--- |
+| 001 | 张三 | 78 |
+| 001 | 李四 | 82 |
+| 002 | 小明 | 90 |
+| 001 | 王五 | 67 |
+| 002 | 小红 | 85 |
+| 002 | 小刚 | 90 |
+
+
 ```sql
 CREATE TABLE SQL_5(
     cid varchar(4),
@@ -25,6 +36,7 @@ insert into SQL_5 (cid, sname, score) values('001', '王五', 67);
 insert into SQL_5 (cid, sname, score) values('002', '小红', 85);
 insert into SQL_5 (cid, sname, score) values('002', '小刚', 62);
 ```
+
 
 #### 分组子句(`PARTITION BY`)
 
