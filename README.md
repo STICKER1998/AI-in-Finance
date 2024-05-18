@@ -19,9 +19,9 @@ MySQL
 ==========================
 |章|小节|
 |:---:|:---:|
-|[Chapter 1 MySQL基础](./notebooks/MySQL/MySQL.md) |[MySQL绪论](./notebooks/MySQL/MySQLC1S1.md)  [SQL基础语句](./notebooks/MySQL/MySQLC1S2.md)  [函数](./notebooks/MySQL/MySQLC1S3.md)  [约束](./notebooks/MySQL/MySQLC1S4.md)  [多表查询](./notebooks/MySQL/MySQLC1S5.md)  [事务](./notebooks/MySQL/MySQLC1S6.md)|
+|[Chapter 1 MySQL基础]|[MySQL绪论](./notebooks/MySQL/MySQLC1S1.md)  [SQL基础语句](./notebooks/MySQL/MySQLC1S2.md)  [函数](./notebooks/MySQL/MySQLC1S3.md)  [约束](./notebooks/MySQL/MySQLC1S4.md)  [多表查询](./notebooks/MySQL/MySQLC1S5.md)  [事务](./notebooks/MySQL/MySQLC1S6.md)|
 |Chapter 2 MySQL进阶 |存储引擎  索引  SQL优化  视图/存储过程/触发器 锁 InnoDB引擎 MySQL管理|
-|Chapter 3 MySQL实战 |[行列转换问题](./notebooks/MySQL/MySQLC3S1.md) [窗口函数（排序，分类，聚合，连续查询问题）](./notebooks/MySQL/MySQLC3S2.md)|
+|Chapter 3 MySQL实战 |[行列转换问题](./notebooks/MySQL/MySQLC3S1.md) [窗口函数(排序|分类|聚合|连续查询问题)](./notebooks/MySQL/MySQLC3S2.md)|
 
 
 Linux
