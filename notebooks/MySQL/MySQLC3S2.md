@@ -422,10 +422,29 @@ SELECT DISTINCT player_id FROM t1 WHERE player_id = layer_player_id GROUP BY pla
 | A3 |
 | A1 |
 
+**错因分析**
+因为在表中如下部分第一条，第三条和第四条数据会因为过滤条件`WHERE player_id = layer_player_id`而被删除，
+| player\_id | score | score\_time |
+| :--- | :--- | :--- |
+| A1 | 3 | 2022-09-20 19:03:10 |
+| A1 | 2 | 2022-09-20 19:03:34 |
+| B2 | 2 | 2022-09-20 19:03:58 |
+| B1 | 3 | 2022-09-20 19:04:07 |
+| A1 | 1 | 2022-09-20 19:04:19 |
+| A1 | 2 | 2022-09-20 19:04:31 |
+
+从而`GROUP BY player_id HAVING count(*)>=2`分组检索会在如下子表上进行，故`A1`将会被保留。
+| player\_id | score | score\_time |
+| :--- | :--- | :--- |
+| A1 | 2 | 2022-09-20 19:03:34 |
+| A1 | 1 | 2022-09-20 19:04:19 |
+| A1 | 2 | 2022-09-20 19:04:31 |
+
 
 #### 问题3：连续区间起止点id查找
-查找出`log_id`中的连续区间，并返回其起点`start_id`和终止点`end_id`。譬如下面的`log_id`中（1，2，3）为一个连续区间，其`start_id=1`，`end_id=3`。
+查找出`log_id`中的连续区间，并返回其起点`start_id`和终止点`end_id`。譬如下面表`SQL_10`的`log_id`中（1，2，3）为一个连续区间，其`start_id=1, end_id=3`。
 
+表`SQL_10`：记录了登陆账户的id。
 | log\_id |
 | :--- |
 | 1 |
@@ -442,8 +461,19 @@ CREATE TABLE SQL_10(
 INSERT INTO SQL_10(log_id) VALUES(1),(2),(3),(7),(8),(10);
 ```
 
-**解答**
+**解题思路**
+我们先插入一段自增伪列`row_num`，再使用`log_id`减去`row_num`得到`diff`。在`log_id`的连续区间，`diff`将会是一样的。`log_id`=1,2,3时，对应的`diff`均为0。
+| log\_id | row\_num | diff |
+| :--- | :--- | :--- |
+| 1 | 1 | 0 |
+| 2 | 2 | 0 |
+| 3 | 3 | 0 |
+| 7 | 4 | 3 |
+| 8 | 5 | 3 |
+| 10 | 6 | 4 |
 
+
+**解答**
 ```sql
 SELECT * FROM SQL_10;
 WITH t1 as (SELECT *, ROW_NUMBER() over (PARTITION BY NULL ORDER BY log_id) as row_num FROM sql_10),
@@ -452,7 +482,6 @@ SELECT min(log_id) as start_id, max(log_id) as end_id FROM t2 GROUP BY diff HAVI
 ```
 
 **结果**
-
 | start\_id | end\_id |
 | :--- | :--- |
 | 1 | 3 |
