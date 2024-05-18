@@ -1,16 +1,3 @@
-<head>
-    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-    <script type="text/x-mathjax-config">
-        MathJax.Hub.Config({
-            tex2jax: {
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-            inlineMath: [['$','$']]
-            }
-        });
-    </script>
-</head>
-
-
 AB Test
 ================================
 1. AB Test的定义
@@ -54,6 +41,11 @@ AB测试的本质：假设检验；
 
 本案例原则上应该要选择右侧单尾检验，但是我们并不能确定新页面的性能一定比当前页面更好，所以选择双尾检验。
 
-- 如果备择假设H1是$$\neq$$，则是双尾检验；
-- 如果备择假设H1是$\ge$，则是双尾检验；
-- 如果备择假设H1是$\neq$，则是双尾检验；
+> [!NOTE]
+> - 如果备择假设H1是 $\neq$ ，则是双尾检验；
+> - 如果备择假设H1是 $\ge$ 或者$>$ ，则是右侧单尾检验；
+> - 如果备择假设H1是 $\le$ 或者$<$，则是左侧单尾检验；
+
+本案例中假设检验问题可以写成：
+- 原假设 $H_0： P=P_0$;
+- 备择假设 $H_1: P\neq P_0$;
