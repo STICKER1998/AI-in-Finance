@@ -1,3 +1,16 @@
+<head>
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            tex2jax: {
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+            inlineMath: [['$','$']]
+            }
+        });
+    </script>
+</head>
+
+
 AB Test
 ================================
 1. AB Test的定义
@@ -15,6 +28,8 @@ AB测试的本质：假设检验；
 
 ### 2.A/B测试基本流程
 了解了基本的背景之后，就可以进入AB测试。
+
+
 
 #### 确定实验目标及衡量指标
 在本案例中实验目标是通过AB测试确定新落地页是否可以提升2%的转化率。衡量指标为页面转化率。
@@ -39,6 +54,6 @@ AB测试的本质：假设检验；
 
 本案例原则上应该要选择右侧单尾检验，但是我们并不能确定新页面的性能一定比当前页面更好，所以选择双尾检验。
 
-- 如果备择假设H1是$\neq$，则是双尾检验；
+- 如果备择假设H1是$$\neq$$，则是双尾检验；
 - 如果备择假设H1是$\ge$，则是双尾检验；
 - 如果备择假设H1是$\neq$，则是双尾检验；
