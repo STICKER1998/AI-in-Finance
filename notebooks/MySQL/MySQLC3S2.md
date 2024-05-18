@@ -116,7 +116,6 @@ FROM
 | 002 | 小刚 | 90 | 2 | 1 | 1 |
 | 002 | 小红 | 85 | 3 | 3 | 2 |
 
-
 #### 聚合函数
 sum avg count max min
 这些函数的使用方法与之前一样
@@ -214,8 +213,10 @@ insert into SQL_6(cid, sname, course, score) values('002', '小刚','语文', 71
 ```
 
 **任务1：返回每个同学的信息及其考试分数排名前三的科目及其信息**
+
 **解题思路**
-我们首先根据cid进行分组，并根据score在每个组内进行降序排序，并使用ROW_NUMBER()函数生成自增伪劣。最后，我们只需要用WHERE语句过滤出`rn<=3`数据即可。
+
+我们首先根据cid进行分组，接着根据score在每个组内进行降序排序并使用ROW_NUMBER()函数生成自增伪列。最后，我们只需要用WHERE语句过滤出`rn<=3`数据即可。
 | cid | sname | course | score | rn |
 | :--- | :--- | :--- | :--- | :--- |
 | 002 | 小刚 | 语文 | 71 | 1 |
@@ -298,7 +299,78 @@ HAVING
 | 王五 |
 | 小红 |
 
+#### 问题2：员工收入分类问题
 
+**任务**：对各部门的员工的工资从小到大排序，排名前30%为'低层'，30%-80%为'中层'，高于80%为'高层'。编写SQL语句给出员工信息及其工资分类。
+
+**样本**：`SQL_7`表依次记录了员工的编号，姓名，入职日期，薪水以及所属部门编号。
+| empno | ename | hire\_date | salary | dept\_no |
+| :--- | :--- | :--- | :--- | :--- |
+| 1 | Adam | 2018-03-01 | 1000 | A |
+| 2 | Bill | 2021-03-01 | 1200 | A |
+| 3 | Cindy | 2016-03-01 | 1500 | A |
+| 4 | Danny | 2020-03-01 | 5000 | A |
+| 5 | Gary | 2020-03-01 | 1800 | B |
+| 6 | Hugo | 2018-03-01 | 2500 | B |
+| 7 | Fred | 2017-03-01 | 3500 | B |
+| 8 | Eason | 2020-03-01 | 4000 | B |
+
+```sql
+CREATE TABLE sql_7(
+    empno int,
+    ename varchar(10),
+    hire_date date,
+    salary int,
+    dept_no varchar(2)
+);
+
+INSERT INTO sql_7(empno, ename, hire_date,salary,dept_no) values(001,'Adam','2018-03-01', 1000, 'A');
+INSERT INTO sql_7(empno, ename, hire_date,salary,dept_no) values(002,'Bill','2021-03-01', 1200, 'A');
+INSERT INTO sql_7(empno, ename, hire_date,salary,dept_no) values(003,'Cindy','2016-03-01', 1500, 'A');
+INSERT INTO sql_7(empno, ename, hire_date,salary,dept_no) values(004,'Danny','2020-03-01', 5000, 'A');
+INSERT INTO sql_7(empno, ename, hire_date,salary,dept_no) values(005,'Gary','2020-03-01', 1800, 'B');
+INSERT INTO sql_7(empno, ename, hire_date,salary,dept_no) values(006,'Hugo','2018-03-01', 2500, 'B');
+INSERT INTO sql_7(empno, ename, hire_date,salary,dept_no) values(007,'Fred','2017-03-01', 3500, 'B');
+INSERT INTO sql_7(empno, ename, hire_date,salary,dept_no) values(008,'Eason','2020-03-01', 4000, 'B');
+```
+
+**解题思路**
+我们首先根据部门分组，并在组内按照工资进行升序排序记为'rn'，接着我们统计出各部门总人数，并以此计算该员工收入的排位。最后，使用case when语句根据员工收入排位给出工资`label`。
+
+**解答**
+```sql
+WITH
+t1 as(
+    SELECT *, ROW_NUMBER() over (partition by dept_no order by salary) as rn,
+           count(empno) over (partition by dept_no) as cnt FROM sql_7
+),
+
+t2 as (
+    select *, round(rn/cnt,2) as percent from t1
+)
+
+SELECT
+    *,
+    CASE WHEN percent <=0.3 THEN '低层'
+         WHEN percent <=0.8 AND percent>0.3 THEN '中层'
+         WHEN percent >0.8 THEN '高层'
+    END as label
+FROM t2;
+```
+
+**结果**
+| empno | ename | hire\_date | salary | dept\_no | rn | cnt | percent | label |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| 1 | Adam | 2018-03-01 | 1000 | A | 1 | 4 | 0.25 | 低层 |
+| 2 | Bill | 2021-03-01 | 1200 | A | 2 | 4 | 0.50 | 中层 |
+| 3 | Cindy | 2016-03-01 | 1500 | A | 3 | 4 | 0.75 | 中层 |
+| 4 | Danny | 2020-03-01 | 5000 | A | 4 | 4 | 1.00 | 高层 |
+| 5 | Gary | 2020-03-01 | 1800 | B | 1 | 4 | 0.25 | 低层 |
+| 6 | Hugo | 2018-03-01 | 2500 | B | 2 | 4 | 0.50 | 中层 |
+| 7 | Fred | 2017-03-01 | 3500 | B | 3 | 4 | 0.75 | 中层 |
+| 8 | Eason | 2020-03-01 | 4000 | B | 4 | 4 | 1.00 | 高层 |
+
+----------------------------------------------------------------------------------------------------------------------
 ### 5.连续问题
 #### 问题1：连续登陆问题
 **任务**：编写SQL语句，根据用户的`user_id`以及`login_date`查找出连续三天登陆的用户的`user_id`。
