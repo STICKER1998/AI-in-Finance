@@ -9,7 +9,7 @@
 ```
 
 ### 2.窗口的确定
-#### 样本`SQL_5`
+#### 样本：`SQL_5`表记录了不同学生的id，名字和分数。
 
 | cid | sname | score |
 | :--- | :--- | :--- |
@@ -42,8 +42,9 @@ insert into SQL_5 (cid, sname, score) values('002', '小刚', 62);
 
 > [!NOTE]
 > **注意partition by 和group by的区别**
-> - 前者不会压缩行数，但是后者会
-> - 后者只能选取分组的列和聚合的列：如下两段代码中使用窗口函数时既可以返回所有的列，还可以返回使用聚合函数之后的结果，而对于group by而言只能返回分组列和聚合函数作用后的结果。
+> - 前者不会压缩行数，但是后者会；
+> - 后者只能选取分组的列和聚合的列：如下两段代码中使用窗口函数时既可以返回所有的列，还可以返回使用聚合函数之后的结果，而对于group by而言只能返回分组列和聚合函数作用后的结果；
+> - GROUP BY 后生成的结果集与原表的行数和列数都不同；
 
 ```sql
 select *, sum(score) over (partition by cid) as "班级总分" FROM sql_5;
@@ -106,7 +107,7 @@ SELECT *, row_number() over (partition by cid order by score desc) as '不可并
 FROM
     sql_5;
 ```
-| cid | sname | score | 不可并列排名 | 跳跃可并列排名 | 不可并列排名 |
+| cid | sname | score | 不可并列排名 | 跳跃可并列排名 | 连续可并列排名 |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | 001 | 李四 | 82 | 1 | 1 | 1 |
 | 001 | 张三 | 78 | 2 | 2 | 2 |
@@ -118,9 +119,36 @@ FROM
 
 #### 聚合函数
 sum avg count max min
+这些函数的使用方法与之前一样
 
 #### 跨行行数
 lag, lead
+
+```sql
+-- 同一班级内，成绩比自己低一名的分数是多少
+SELECT *, LAG(score, 1) OVER (PARTITION BY cid ORDER BY score) as '低一名的分数' FROM SQL_5;
+```
+| cid | sname | score | 低一名的分数 |
+| :--- | :--- | :--- | :--- |
+| 001 | 王五 | 67 | null |
+| 001 | 张三 | 78 | 67 |
+| 001 | 李四 | 82 | 78 |
+| 002 | 小红 | 85 | null |
+| 002 | 小明 | 90 | 85 |
+| 002 | 小刚 | 90 | 90 |
+
+```sql
+-- 同一班级内，成绩比自己高两名的分数是多少
+SELECT *, LEAD(score, 2) OVER (PARTITION BY cid ORDER BY score) as '高两名的分数' FROM SQL_5;
+```
+| cid | sname | score | 高两名的分数 |
+| :--- | :--- | :--- | :--- |
+| 001 | 王五 | 67 | 82 |
+| 001 | 张三 | 78 | null |
+| 001 | 李四 | 82 | null |
+| 002 | 小红 | 85 | 90 |
+| 002 | 小明 | 90 | null |
+| 002 | 小刚 | 90 | null |
 
 ### 4.TOPN问题以及分类聚合问题
 **数据库**
