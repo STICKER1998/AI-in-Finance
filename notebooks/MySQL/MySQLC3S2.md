@@ -270,6 +270,26 @@ HAVING
 ### 5.连续问题
 #### 问题1：连续登陆问题
 根据用户的`user_id`以及`login_date`查找出连续三天登陆的用户的`user_id`
+
+| user\_id | login\_date |
+| :--- | :--- |
+| A | 2022-09-02 |
+| A | 2022-09-03 |
+| A | 2022-09-04 |
+| B | 2021-11-25 |
+| B | 2021-12-30 |
+| C | 2022-01-01 |
+| C | 2022-04-04 |
+| C | 2022-09-03 |
+| C | 2022-09-04 |
+| C | 2022-09-05 |
+| A | 2022-09-03 |
+| D | 2022-10-20 |
+| D | 2022-10-21 |
+| A | 2022-10-03 |
+| D | 2022-10-22 |
+| D | 2022-10-23 |
+
 ```sql
 CREATE TABLE SQL_8(
     user_id varchar(2),
@@ -309,6 +329,13 @@ t2 as(SELECT *, date_sub(login_date, INTERVAL rn DAY) as sub_date FROM t1)
 SELECT DISTINCT user_id FROM t2 GROUP BY user_id,  sub_date having count(*)>=3;
 ```
 
+**结果**
+| user\_id |
+| :--- |
+| A |
+| C |
+| D |
+
 这个解法的精髓在于可以生成**自增伪列**，如果使用login_date减掉伪列后的结果中出现连续出现三个一样的结果时，那么说明该用户连续三天登录。
 
 下面这个解法先是创造两个新的列用于分别表示login_date滞后一天和滞后两天的序列。当login_date和两个同行中滞后值分别相差1和2时，则表示该用户连续三天登录。
@@ -337,6 +364,22 @@ SELECT DISTINCT user_id FROM t2 WHERE diff=1 GROUP BY user_id HAVING count(*)>=2
 
 #### 问题2：连续进球问题
 编写SQL语句，检索出连续进了3球的队员编号`player_id`。
+
+| player\_id | score | score\_time |
+| :--- | :--- | :--- |
+| A3 | 1 | 2022-09-20 19:00:14 |
+| A3 | 1 | 2022-09-20 19:01:04 |
+| A3 | 3 | 2022-09-20 19:01:16 |
+| B1 | 3 | 2022-09-20 19:02:05 |
+| A2 | 2 | 2022-09-20 19:02:25 |
+| B3 | 2 | 2022-09-20 19:02:54 |
+| A1 | 3 | 2022-09-20 19:03:10 |
+| A1 | 2 | 2022-09-20 19:03:34 |
+| B2 | 2 | 2022-09-20 19:03:58 |
+| B1 | 3 | 2022-09-20 19:04:07 |
+| A1 | 1 | 2022-09-20 19:04:19 |
+| A1 | 2 | 2022-09-20 19:04:31 |
+
 ```sql
 CREATE TABLE SQL_9(
     player_id varchar(2),
@@ -361,14 +404,37 @@ WITH t1 as (SELECT *, lag(player_id,1) OVER(ORDER BY score_time) as l1_player_id
 SELECT DISTINCT player_id FROM t1 WHERE player_id = l1_player_id AND player_id = l2_player_id GROUP BY player_id;
 ```
 
+**结果**
+| player\_id |
+| :--- |
+| A3 |
+
+
 **错误解法**
 ```sql
 WITH t1 as (SELECT *, lag(player_id,1) OVER(ORDER BY score_time) as layer_player_id FROM SQL_9)
 SELECT DISTINCT player_id FROM t1 WHERE player_id = layer_player_id GROUP BY player_id HAVING count(*)>=2;
 ```
 
+**错误结果**
+| player\_id |
+| :--- |
+| A3 |
+| A1 |
+
+
 #### 问题3：连续区间起止点id查找
 查找出`log_id`中的连续区间，并返回其起点`start_id`和终止点`end_id`。譬如下面的`log_id`中（1，2，3）为一个连续区间，其`start_id=1`，`end_id=3`。
+
+| log\_id |
+| :--- |
+| 1 |
+| 2 |
+| 3 |
+| 7 |
+| 8 |
+| 10 |
+
 ```sql
 CREATE TABLE SQL_10(
     log_id int
@@ -384,3 +450,11 @@ WITH t1 as (SELECT *, ROW_NUMBER() over (PARTITION BY NULL ORDER BY log_id) as r
 t2 as (SELECT *, log_id-row_num as diff FROM t1)
 SELECT min(log_id) as start_id, max(log_id) as end_id FROM t2 GROUP BY diff HAVING count(*)>1;
 ```
+
+**结果**
+
+| start\_id | end\_id |
+| :--- | :--- |
+| 1 | 3 |
+| 7 | 8 |
+
