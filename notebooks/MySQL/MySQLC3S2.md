@@ -363,9 +363,9 @@ SELECT DISTINCT user_id FROM t2 WHERE diff=1 GROUP BY user_id HAVING count(*)>=2
 ```
 
 #### 问题2：连续进球问题
-编写SQL语句，检索出连续进三球的队员编号`player_id`。
+**要求**： 编写SQL语句，检索出连续进三球的队员编号`player_id`。
 
-表`SQL_9`：分别记录了球员的id `player_id`，进球得分`score`和进球时间`score_time`。
+**样本**：表`SQL_9`分别记录了球员的id： `player_id`，进球得分：`score`和进球时间：`score_time`。
 | player\_id | score | score\_time |
 | :--- | :--- | :--- |
 | A3 | 1 | 2022-09-20 19:00:14 |
@@ -398,15 +398,15 @@ VALUES ('A3', 1,'2022-09-20 19:00:14') ,('A3', 1,'2022-09-20 19:01:04'),
        ('A1', 1,'2022-09-20 19:04:19') ,('A1', 2,'2022-09-20 19:04:31');
 ```
 
-**解答**
-```sql
-WITH t1 as (SELECT *, lag(player_id,1) OVER(ORDER BY score_time) as l1_player_id,
-    lag(player_id,2) OVER(ORDER BY score_time) as l2_player_id FROM SQL_9)
-SELECT DISTINCT player_id FROM t1 WHERE player_id = l1_player_id AND player_id = l2_player_id GROUP BY player_id;
-```
-
 **解题思路**
-我们先利用窗口函数生成两个新列用于记录前一进球的球员id和前两进球的球员id，只有当三个id均相同时才表示该球员连进三球。
+连续N次以上为球队得分，要求数据满足如下条件
+- player_id要相同表示同一球员；
+- 每行记录以得分时间从小到大排序；
+- 数据行数大于等于N；
+
+
+我们先利用窗口函数生成两个新列用于记录前一进球的球员了l1_player_id和前二进球的球员l2_player_id，只有当前进球球员的id满足`player_id=l1_player_id=l2_player_id`时才表示该球员连进三球。
+
 | player\_id | score | score\_time | l1\_player\_id | l2\_player\_id |
 | :--- | :--- | :--- | :--- | :--- |
 | A3 | 1 | 2022-09-20 19:00:14 | null | null |
@@ -422,6 +422,13 @@ SELECT DISTINCT player_id FROM t1 WHERE player_id = l1_player_id AND player_id =
 | A1 | 1 | 2022-09-20 19:04:19 | B1 | B2 |
 | A1 | 2 | 2022-09-20 19:04:31 | A1 | B1 |
 
+
+**解答**
+```sql
+WITH t1 as (SELECT *, lag(player_id,1) OVER(ORDER BY score_time) as l1_player_id,
+    lag(player_id,2) OVER(ORDER BY score_time) as l2_player_id FROM SQL_9)
+SELECT DISTINCT player_id FROM t1 WHERE player_id = l1_player_id AND player_id = l2_player_id GROUP BY player_id;
+```
 
 **结果**
 | player\_id |
@@ -506,3 +513,15 @@ SELECT min(log_id) as start_id, max(log_id) as end_id FROM t2 GROUP BY diff HAVI
 | 1 | 3 |
 | 7 | 8 |
 
+
+> [!NOTE]
+> **技术总结**
+> 如何求解连续区间？
+> - 1）行号过滤法：通过row_number()生成自增伪列（连续行号），与区间列进行差值运算，得到的临时结果如果相同表示为同一连续区间。
+> - 2）错位相减法：通过lead/lag函数直接生成错位列；
+
+> [!WARNING]
+> **避坑点**
+> - 1）在实际问题中，原区间列行与行之间的差值可能不是1，此时可以用ROW_NUMBER()生成一个伪区间列，因为在连续问题中“事件”发生的相对顺序是我们所关注的；比如**连续进球问题**中，我们只关心进球的顺序，并不关心进球的具体时间，所以也可以先按进球顺序生成一个伪区间列（连续区间列），再使用行号过滤法来解决问题；
+> - 2）使用错位相减法的时候一定要特别小心**连续进球问题**中提到的错误，不能简单地使用`COUNT`函数来判断连续问题，特别是连续个数大于2的情况；
+> - 3）在最后的输出中，我们要注意使用`DISTINCT`关键字，因为在所有问题中，同一个体的连续行为可能出现很多次；
