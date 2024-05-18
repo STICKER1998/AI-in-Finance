@@ -150,7 +150,7 @@ SELECT *, LEAD(score, 2) OVER (PARTITION BY cid ORDER BY score) as '高两名的
 | 002 | 小明 | 90 | null |
 | 002 | 小刚 | 90 | null |
 
-### 4.TOPN问题以及分类聚合问题
+### 4.排序，分类以及聚合问题
 **样本**：`SQL_6`表记录了不同学生的id：` cid `，名字`sname`，课程`course`和对应的课程分数`score`。
 | cid | sname | course | score |
 | :--- | :--- | :--- | :--- |
