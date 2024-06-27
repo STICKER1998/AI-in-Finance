@@ -29,3 +29,5 @@ public class Welcome {
 |dir|查看本目录下的文件和子目录列表|
 |cls|清除屏幕命令|
 |tab|自动补齐命令|
+
+
