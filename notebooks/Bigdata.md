@@ -5,12 +5,14 @@ HDFS使用堕胎计算机储存文件，并且提供统一的访问接口，像�
 
 其主要的结构为
 ```mermaid
-flowchat
-st=>start:Start
+graph TD;
+  HadoopClient-->NameNode;
+  NameNode-->DataNode;
+  DataNode-->LocalDisk;
+  NameNode-->DataNode2;
+  DataNode2-->LocalDisk2;
 ```
                           
-HDFS Client-> Name Node 
-|  ├─ DataNode 
-|  ├─ Local Disk
+
 
                        
